@@ -1,0 +1,60 @@
+{
+    "name": "tarfin-labs/netgsm",
+    "description": "netgsm channel for laravel",
+    "keywords": [
+        "tarfin-labs",
+        "netgsm"
+    ],
+    "homepage": "https://github.com/tarfin-labs/netgsm",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "hakan özdemir",
+            "email": "hakanozdemirr@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.1",
+        "guzzlehttp/guzzle": "^6.5",
+        "illuminate/support": "^6.0",
+        "illuminate/notifications": "~6.0",
+        "nesbot/carbon": "^2.29",
+        "ext-simplexml": "*"
+    },
+    "require-dev": {
+        "fzaninotto/faker": "^1.9",
+        "mockery/mockery": "^1.3",
+        "orchestra/testbench": "^4.0",
+        "phpunit/phpunit": "^8.5"
+    },
+    "autoload": {
+        "psr-4": {
+            "TarfinLabs\\Netgsm\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "TarfinLabs\\Netgsm\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "vendor/bin/phpunit",
+        "test-coverage": "vendor/bin/phpunit --coverage-html coverage"
+
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "TarfinLabs\\Netgsm\\NetgsmServiceProvider"
+            ],
+            "aliases": {
+                "Netgsm": "TarfinLabs\\Netgsm\\NetgsmFacade"
+            }
+        }
+    }
+}
