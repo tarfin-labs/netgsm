@@ -6,7 +6,7 @@ With this package, you can send sms and get sms reports by using Netgsm service 
 - [Installation](#installation)
 	- [Setting up the Netgsm service](#setting-up-the-Netgsm-service)
 - [Usage](#usage)
-    - [Service Methods](#methods)
+    - [Service Methods](#service-methods)
     - [SMS Sending](#sms-sending)
 	    - [Available SMS Interfaces](#available-sms-interfaces)
 	- [Reporting](#reporting)
@@ -164,13 +164,13 @@ $report = new NetgsmSmsReport();
 
 | Method        | Description | Type | Required | NetgsmSmsReport Support | NetgsmSmsDetailReport Support | 
 | :------------|: ---- | :---- | :-------- | :--------------- | :--------------------- |
-| setStartDate() |Start Date| Carbon | No | Yes | Yes |
-| setEndDate() | End Date |Carbon | No | Yes | Yes |
-| setBulkId() | Netgsm Job Id | Integer | No | Yes | Yes |
-| setStatus() | Message Status |Integer | No | Yes | No |
-| setPhone() | Phone Number | String Seperated by comma | No | Yes | Yes |
-| setHeader() | Header | String | No | Yes | Yes |
-| setVersion() | API Version |  Integer | No | Yes | Yes |
+| setStartDate() |Start Date| Carbon | No | Yes | Yes 
+| setEndDate() | End Date |Carbon | No | Yes | Yes 
+| setBulkId() | Netgsm Job Id | Integer | No | Yes | Yes 
+| setStatus() | Message Status |Integer | No | Yes | No 
+| setPhone() | Phone Number | String Seperated by comma | No | Yes | Yes 
+| setHeader() | Header | String | No | Yes | Yes 
+| setVersion() | API Version |  Integer | No | Yes | Yes 
 
 ##### Sample Usage
 
@@ -239,5 +239,5 @@ If you discover any security related issues, please email development@tarfin.com
 - [Hakan Özdemir](https://github.com/hozdemir)
 - [All Contributors](../../contributors)
 
-###License
+### License
 Laravel Netgsm is open-sourced software licensed under the MIT license.
