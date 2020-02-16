@@ -7,11 +7,35 @@ use SimpleXMLElement;
 
 class NetgsmSmsDetailReport extends AbstractNetgsmReport
 {
+    /**
+     * @var string
+     */
     protected $url = 'https://api.netgsm.com.tr/sms/report/detail';
 
-    protected $retryCode = 100;
+    /**
+     * @var array
+     */
+    protected $errorCodes = [
+        30, 60, 65, 70
+    ];
 
     /**
+     * @var array
+     */
+    protected $noResultCodes = [
+        100, 101
+    ];
+
+    /**
+     * sends a report request until one of the $noResultCodes comes in response.
+     *
+     * @var bool
+     */
+    protected $paginated = true;
+
+    /**
+     * Default filter parameters
+     *
      * @var array
      */
     protected $filters = [
@@ -21,6 +45,10 @@ class NetgsmSmsDetailReport extends AbstractNetgsmReport
     ];
 
     /**
+     * Sets the Netgsm service bulkId
+     * If bulkId is set, type value is set to 0.
+     * @see https://www.netgsm.com.tr/dokuman/#http-get-rapor
+     *
      * @param  mixed  $bulkId
      * @return AbstractNetgsmReport
      */
@@ -34,6 +62,8 @@ class NetgsmSmsDetailReport extends AbstractNetgsmReport
     }
 
     /**
+     * Processes the report line
+     *
      * @param $line
      * @return array
      */
@@ -51,6 +81,8 @@ class NetgsmSmsDetailReport extends AbstractNetgsmReport
     }
 
     /**
+     * Parses the XML response returned from the Netgsm API service.
+     *
      * @param $response
      * @return Collection
      * @throws Exceptions\ReportException

@@ -11,7 +11,6 @@ use SimpleXMLElement;
 use TarfinLabs\Netgsm\Exceptions\ReportException;
 use TarfinLabs\Netgsm\Netgsm;
 use TarfinLabs\Netgsm\NetgsmSmsDetailReport;
-use TarfinLabs\Netgsm\NetgsmSmsReport;
 
 class NetGsmReportDetailTest extends BaseTestCase
 {
@@ -46,7 +45,7 @@ class NetGsmReportDetailTest extends BaseTestCase
     {
         $generatedData = [];
         $responses = [];
-        for ($i=0;$i<$times;$i++){
+        for ($i = 0; $i < $times; $i++) {
             $datum = $this->generateResponse($rowCount);
             $generatedData = array_merge($generatedData, $datum);
             $responses[] = new Response(
@@ -75,18 +74,18 @@ class NetGsmReportDetailTest extends BaseTestCase
      * @param $rowCount
      * @return array
      */
-    protected function generateResponse($rowCount):array
+    protected function generateResponse($rowCount): array
     {
         $response = [];
         for ($i = 0; $i < $rowCount; $i++) {
             $response[] = [
-                'jobId' => $this->faker->numberBetween(11111, 99999),
+                'jobId'     => $this->faker->numberBetween(11111, 99999),
                 'startDate' => $this->faker->date,
-                'endDate' => $this->faker->date,
-                'header' => $this->faker->word,
-                'message' => $this->faker->sentence,
-                'status' => $this->faker->randomElement(range(1,9)),
-                'total' => $this->faker->numberBetween(1,10)
+                'endDate'   => $this->faker->date,
+                'header'    => $this->faker->word,
+                'message'   => $this->faker->sentence,
+                'status'    => $this->faker->randomElement(range(1, 9)),
+                'total'     => $this->faker->numberBetween(1, 10)
             ];
         }
         return $response;
@@ -142,16 +141,16 @@ class NetGsmReportDetailTest extends BaseTestCase
                     $collectionItem['jobId'] = $item[0];
                     $collectionItem['phone'] = $item[1];
                     $collectionItem['status'] = $item[2];
-                    $collectionItem['operator_code'] = $item[3];
+                    $collectionItem['operatorCode'] = $item[3];
                     $collectionItem['length'] = $item[4];
-                    $collectionItem['send_date'] = $item[5];
-                    $collectionItem['send_time'] = $item[6];
-                    $collectionItem['error_code'] = $item[7];
+                    $collectionItem['startDate'] = $item[5];
+                    $collectionItem['startTime'] = $item[6];
+                    $collectionItem['errorCode'] = $item[7];
                     break;
                 case 3:
                     $collectionItem['jobId'] = $item[0];
                     $collectionItem['status'] = $item[1];
-                    $collectionItem['error_code'] = $item[2];
+                    $collectionItem['errorCode'] = $item[2];
                     break;
             }
             $collection->push($collectionItem);
@@ -179,7 +178,7 @@ class NetGsmReportDetailTest extends BaseTestCase
     {
         $type = $this->faker->randomElement([0, 1]);
         $rowCount = $this->faker->numberBetween(15, 30);
-        $pages = $this->faker->numberBetween(5,10);
+        $pages = $this->faker->numberBetween(5, 10);
         $report = $this->newSmsReport();
         $this->mockReportApiRequest($rowCount, $pages);
 
@@ -187,8 +186,8 @@ class NetGsmReportDetailTest extends BaseTestCase
             'type' => $type
         ];
 
-        if ($type == 0){
-            $filters['bulkid'] = $this->faker->numberBetween(11111,99999);
+        if ($type == 0) {
+            $filters['bulkid'] = $this->faker->numberBetween(11111, 99999);
         }
 
         $startDate = new Carbon();
@@ -246,7 +245,7 @@ class NetGsmReportDetailTest extends BaseTestCase
             'version' => $version
         ])->keyBy('jobId');
 
-        foreach($reportCollection as $jobId => $item){
+        foreach ($reportCollection as $jobId => $item) {
             $existingItem = array_filter($collection[$jobId]);
             $item = array_filter($item);
             $this->assertTrue($existingItem == $item);

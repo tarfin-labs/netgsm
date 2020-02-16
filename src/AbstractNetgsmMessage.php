@@ -10,9 +10,14 @@ use TarfinLabs\Netgsm\Exceptions\IncorrectPhoneNumberFormatException;
 
 abstract class AbstractNetgsmMessage
 {
-    const SUCCESS_CODES = [
+    private const SUCCESS_CODES = [
         '00', '01', '02',
     ];
+
+    /**
+     * @var string
+     */
+    protected $sendMethod;
 
     /**
      * @var string[]
@@ -66,6 +71,16 @@ abstract class AbstractNetgsmMessage
     protected $message;
 
     /**
+     * authorized data parameter
+     *
+     * @see https://www.netgsm.com.tr/dokuman/#http-get-sms-g%C3%B6nderme
+     * @see https://www.netgsm.com.tr/dokuman/#xml-post-sms-g%C3%B6nderme
+     *
+     * @var bool
+     */
+    protected $authorizedData = false;
+
+    /**
      * @var ResponseInterface
      */
     protected $response;
@@ -106,6 +121,8 @@ abstract class AbstractNetgsmMessage
      */
     abstract protected function mappers(): array;
 
+    abstract protected function createXmlPost(): string;
+
     /**
      * @param  string|array|$recipients
      * @return $this
@@ -133,7 +150,7 @@ abstract class AbstractNetgsmMessage
      * @param  null  $header
      * @return AbstractNetgsmMessage
      */
-    public function setHeader($header)
+    public function setHeader($header): self
     {
         $this->header = $header;
 
@@ -141,11 +158,11 @@ abstract class AbstractNetgsmMessage
     }
 
     /**
-     * @return null
+     * @return string
      */
-    public function getHeader()
+    public function getHeader(): string
     {
-        return $this->header;
+        return $this->header ?? $this->defaults['header'];
     }
 
     /**
@@ -170,15 +187,53 @@ abstract class AbstractNetgsmMessage
     /**
      * @return string
      */
+    public function getSendMethod(): string
+    {
+        return $this->sendMethod ?? $this->defaults['sms_sending_method'];
+    }
+
+    /**
+     *
+     * @param  mixed  $sendMethod
+     * @return AbstractNetgsmMessage
+     */
+    public function setSendMethod($sendMethod): self
+    {
+        $this->sendMethod = $sendMethod;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isAuthorizedData(): bool
+    {
+        return $this->authorizedData;
+    }
+
+    /**
+     *
+     * @param  bool  $authorizedData
+     * @return AbstractNetgsmMessage
+     */
+    public function setAuthorizedData(bool $authorizedData): AbstractNetgsmMessage
+    {
+        $this->authorizedData = $authorizedData;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
     public function getUrl(): string
     {
-        return $this->url;
+        return $this->url."/".$this->getSendMethod();
     }
 
     /**
      * @throws IncorrectPhoneNumberFormatException
      */
-    protected function validateRecipients()
+    protected function validateRecipients():void
     {
         if (count($this->recipients) == 0) {
             throw new IncorrectPhoneNumberFormatException();
@@ -193,18 +248,16 @@ abstract class AbstractNetgsmMessage
     /**
      * @return string
      */
-    public function body(): string
+    public function body(): array
     {
-        $params = array_merge(array_flip($this->fields), array_filter($this->mappers()));
-
-        return http_build_query($params);
+        return array_merge(array_flip($this->fields), array_filter($this->mappers()));
     }
 
     /**
      * @param  mixed  $client
      * @return AbstractNetgsmMessage
      */
-    public function setClient(ClientInterface $client)
+    public function setClient(ClientInterface $client): self
     {
         $this->client = $client;
 
@@ -264,7 +317,7 @@ abstract class AbstractNetgsmMessage
     /**
      * @return mixed
      */
-    public function getJobId()
+    public function getJobId(): string
     {
         return $this->jobId;
     }
@@ -273,7 +326,7 @@ abstract class AbstractNetgsmMessage
      * @return $this
      * @throws CouldNotSendNotification
      */
-    public function parseResponse()
+    public function parseResponse(): self
     {
         $result = explode(' ', $this->getResponseContent());
 
@@ -298,12 +351,45 @@ abstract class AbstractNetgsmMessage
      * @throws IncorrectPhoneNumberFormatException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
+    protected function sendViaHttp(): self
+    {
+        $query = http_build_query($this->body());
+
+        $this->response = $this->client->request('GET', $this->url.'?'.$query);
+
+        return $this->parseResponse();
+    }
+
+    /**
+     * @return $this
+     * @throws CouldNotSendNotification
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    protected function sendViaXml(): self
+    {
+        $options = [
+            'headers' => [
+                'Content-Type' => 'text/xml; charset=UTF8',
+            ],
+            'body'    => $this->createXmlPost(),
+        ];
+
+        $this->response = $this->client->request('POST', $this->getUrl(), $options);
+
+        return $this->parseResponse();
+    }
+
+    /**
+     * @return $this
+     * @throws CouldNotSendNotification
+     * @throws IncorrectPhoneNumberFormatException
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
     public function send()
     {
         $this->validateRecipients();
+        $method = 'sendVia'.$this->getSendMethod();
 
-        $this->response = $this->client->request('GET', $this->url.'?'.$this->body());
-
-        return $this->parseResponse();
+        return call_user_func([$this, $method]);
     }
 }

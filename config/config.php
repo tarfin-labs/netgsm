@@ -9,6 +9,8 @@ return [
         'secret' => ''
     ],
     'defaults' => [
-        'dil' => 'tr'
+        'language' => 'tr',
+        'header' => null,
+        'sms_sending_method' => 'http'
     ]
 ];

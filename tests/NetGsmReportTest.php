@@ -136,16 +136,16 @@ class NetGsmReportTest extends BaseTestCase
                     $collectionItem['jobId'] = $item[0];
                     $collectionItem['phone'] = $item[1];
                     $collectionItem['status'] = $item[2];
-                    $collectionItem['operator_code'] = $item[3];
+                    $collectionItem['operatorCode'] = $item[3];
                     $collectionItem['length'] = $item[4];
-                    $collectionItem['send_date'] = $item[5];
-                    $collectionItem['send_time'] = $item[6];
-                    $collectionItem['error_code'] = $item[7];
+                    $collectionItem['startDate'] = $item[5];
+                    $collectionItem['startTime'] = $item[6];
+                    $collectionItem['errorCode'] = $item[7];
                     break;
                 case 3:
                     $collectionItem['jobId'] = $item[0];
                     $collectionItem['status'] = $item[1];
-                    $collectionItem['error_code'] = $item[2];
+                    $collectionItem['errorCode'] = $item[2];
                     break;
             }
             $collection->push($collectionItem);

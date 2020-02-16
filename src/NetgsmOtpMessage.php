@@ -29,12 +29,37 @@ class NetgsmOtpMessage extends AbstractNetgsmMessage
         'no'
     ];
 
+    /**
+     * @return string
+     */
+    protected function createXmlPost(): string
+    {
+        $xml = '<?xml version="1.0" encoding="UTF-8"?>';
+        $xml .= '<mainbody>';
+        $xml .= '<header>';
+        $xml .= '<usercode>'.$this->credentials['user_code'].'</usercode>';
+        $xml .= '<password>'.$this->credentials['secret'].'</password>';
+        $xml .= '<msgheader>'.$this->getHeader().'</msgheader>';
+        $xml .= '</header>';
+        $xml .= '<body>';
+        $xml .= '<msg>';
+        $xml .= '<![CDATA['.$this->message.']]>';
+        $xml .= '</msg>';
+        foreach ($this->recipients as $recipient) {
+            $xml .= '<no>'.$recipient.'</no>';
+        }
+        $xml .= '</body>';
+        $xml .= '</mainbody>';
+
+        return $xml;
+    }
+
     protected function mappers(): array
     {
         return [
             'usercode'  => $this->credentials['user_code'],
             'password'  => $this->credentials['secret'],
-            'msgheader' => $this->header ?? $this->defaults['sender'],
+            'msgheader' => $this->header ?? $this->defaults['header'],
             'msg'       => $this->message,
             'no'        => is_array($this->recipients) ? $this->recipients[0] : $this->recipients,
         ];

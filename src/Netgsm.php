@@ -83,8 +83,8 @@ class Netgsm
                 if (!method_exists($report, 'set'.$filter)) {
                     continue;
                 }
-
-                $report->{'set'.$filter}($value);
+                
+                call_user_func([$report, 'set'.$filter], $value);
             }
         }
 

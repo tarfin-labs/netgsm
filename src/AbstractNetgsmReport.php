@@ -9,9 +9,20 @@ use TarfinLabs\Netgsm\Exceptions\ReportException;
 
 abstract class AbstractNetgsmReport
 {
-    const ERROR_CODES = [
-        30, 70, 100, 101,
-    ];
+    /**
+     * @var array
+     */
+    protected $errorCodes = [];
+
+    /**
+     * @var array
+     */
+    protected $noResultCodes = [];
+
+    /**
+     * @var bool
+     */
+    protected $paginated = false;
 
     /**
      * @var array
@@ -43,14 +54,7 @@ abstract class AbstractNetgsmReport
     protected $filters = [];
 
     /**
-     * @var null
-     */
-    protected $retryCode = null;
-
-    protected $noResultCodes = [];
-
-    /**
-     * @param string $response
+     * @param  string  $response
      * @return Collection
      */
     abstract protected function parseResponse(string $response): Collection;
@@ -183,7 +187,7 @@ abstract class AbstractNetgsmReport
         $data = [
             'usercode' => $this->credentials['user_code'],
             'password' => $this->credentials['secret'],
-            'page' => 1,
+            'page'     => 1,
         ];
 
         $data = array_merge($data, $this->filters);
@@ -196,8 +200,8 @@ abstract class AbstractNetgsmReport
                 ->getBody()
                 ->getContents();
 
-            if ($this->retryCode) {
-                if ($rawResponse == $this->retryCode) {
+            if ($this->paginated) {
+                if (in_array($rawResponse, $this->noResultCodes)) {
                     $keep = false;
                 } else {
                     $data['page']++;
@@ -221,7 +225,7 @@ abstract class AbstractNetgsmReport
      */
     public function validateResponse($response): bool
     {
-        if (in_array(intval($response), self::ERROR_CODES)) {
+        if (in_array(intval($response), $this->errorCodes)) {
             throw new ReportException('Netgsm report error', $response);
         }
 
