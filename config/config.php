@@ -8,6 +8,6 @@ return [
     'defaults'    => [
         'language'           => env('NETGSM_LANGUAGE', 'tr'),
         'header'             => env('NETGSM_HEADER', null),
-        'sms_sending_method' => env('NETGSM_SMS_SENDING_METHOD', 'get')
+        'sms_sending_method' => env('NETGSM_SMS_SENDING_METHOD', 'get'),
     ],
 ];
