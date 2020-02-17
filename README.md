@@ -2,8 +2,8 @@
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/tarfin-labs/netgsm.svg?style=flat-square)](https://packagist.org/packages/tarfin-labs/netgsm)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/tarfin-labs/netgsm/tests?label=tests)
-[![Quality Score](https://img.shields.io/scrutinizer/g/tarfin-labs/netgsm.svg?style=flat-square)](https://scrutinizer-ci.com/g/tarfin-labs/laravel-config)
-[![Total Downloads](https://img.shields.io/packagist/dt/tarfin-labs/netgsm.svg?style=flat-square)](https://packagist.org/packages/tarfin-labs/laravel-config)
+[![Quality Score](https://img.shields.io/scrutinizer/g/tarfin-labs/netgsm.svg?style=flat-square)](https://scrutinizer-ci.com/g/tarfin-labs/netgsm)
+[![Total Downloads](https://img.shields.io/packagist/dt/tarfin-labs/netgsm.svg?style=flat-square)](https://packagist.org/packages/tarfin-labs/netgsm)
 
 ## Introduction
 With this package, you can send easily [Netgsm notifications](https://www.netgsm.com.tr/dokuman/#api-dok%C3%BCman%C4%B1) with Laravel 6.x. 
