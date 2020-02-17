@@ -18,7 +18,6 @@ class CouldNotSendNotification extends \Exception
     const SYSTEM_ERROR = 'Sistem hatası.';
     const NETGSM_GENERAL_ERROR = 'Netgsm responded with an error :';
 
-
     /**
      * Thrown when there's a bad request and an error is responded.
      *

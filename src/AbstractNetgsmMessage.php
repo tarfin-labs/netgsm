@@ -74,7 +74,7 @@ abstract class AbstractNetgsmMessage
     protected $message;
 
     /**
-     * authorized data parameter
+     * authorized data parameter.
      *
      * @see https://www.netgsm.com.tr/dokuman/#http-get-sms-g%C3%B6nderme
      * @see https://www.netgsm.com.tr/dokuman/#xml-post-sms-g%C3%B6nderme
@@ -132,7 +132,7 @@ abstract class AbstractNetgsmMessage
      */
     public function setRecipients($recipients)
     {
-        if (!is_array($recipients)) {
+        if (! is_array($recipients)) {
             $this->recipients = explode(',', $recipients);
         } else {
             $this->recipients = $recipients;
@@ -202,11 +202,12 @@ abstract class AbstractNetgsmMessage
      */
     public function setSendMethod(string $sendMethod): self
     {
-        if (!in_array($sendMethod, $this->sendMethods)) {
-            throw new Exception($sendMethod." method is not allowed");
+        if (! in_array($sendMethod, $this->sendMethods)) {
+            throw new Exception($sendMethod.' method is not allowed');
         }
 
         $this->sendMethod = $sendMethod;
+
         return $this;
     }
 
@@ -219,13 +220,13 @@ abstract class AbstractNetgsmMessage
     }
 
     /**
-     *
      * @param  bool  $authorizedData
      * @return AbstractNetgsmMessage
      */
-    public function setAuthorizedData(bool $authorizedData): AbstractNetgsmMessage
+    public function setAuthorizedData(bool $authorizedData): self
     {
         $this->authorizedData = $authorizedData;
+
         return $this;
     }
 
@@ -234,7 +235,7 @@ abstract class AbstractNetgsmMessage
      */
     public function getUrl(): string
     {
-        return $this->url."/".$this->getSendMethod();
+        return $this->url.'/'.$this->getSendMethod();
     }
 
     /**
@@ -300,6 +301,7 @@ abstract class AbstractNetgsmMessage
     public function setStartDate(Carbon $startDate): self
     {
         $this->startDate = $startDate;
+
         return $this;
     }
 
@@ -310,6 +312,7 @@ abstract class AbstractNetgsmMessage
     public function setEndDate(Carbon $endDate): self
     {
         $this->endDate = $endDate;
+
         return $this;
     }
 
@@ -337,11 +340,11 @@ abstract class AbstractNetgsmMessage
     {
         $result = explode(' ', $this->getResponseContent());
 
-        if (!isset($result[0])) {
+        if (! isset($result[0])) {
             throw new CouldNotSendNotification(CouldNotSendNotification::NETGSM_GENERAL_ERROR);
         }
 
-        if (!in_array($result[0], self::SUCCESS_CODES)) {
+        if (! in_array($result[0], self::SUCCESS_CODES)) {
             $message = $this->errorCodes[$result[0]];
             throw new CouldNotSendNotification($message);
         }

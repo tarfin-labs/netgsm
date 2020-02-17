@@ -1,8 +1,6 @@
 <?php
 
-
 namespace TarfinLabs\Netgsm;
-
 
 use Illuminate\Support\Collection;
 
@@ -14,21 +12,21 @@ class NetgsmSmsReport extends AbstractNetgsmReport
      * @var array
      */
     protected $errorCodes = [
-        30, 70, 100, 101
+        30, 70, 100, 101,
     ];
 
     /**
      * @var array
      */
     protected $noResultCodes = [
-        60
+        60,
     ];
     /**
      * @var array
      */
     protected $filters = [
         'type'    => 2,
-        'version' => 2
+        'version' => 2,
     ];
 
     /**
@@ -38,12 +36,12 @@ class NetgsmSmsReport extends AbstractNetgsmReport
         0 => [
             'jobId'  => 'integer',
             'phone'  => 'string',
-            'status' => 'integer'
+            'status' => 'integer',
         ],
         1 => [
             'jobId'  => 'integer',
             'phone'  => 'string',
-            'status' => 'integer'
+            'status' => 'integer',
         ],
         2 => [
             'jobId'        => 'integer',
@@ -53,13 +51,13 @@ class NetgsmSmsReport extends AbstractNetgsmReport
             'length'       => 'integer',
             'startDate'    => 'date',
             'startTime'    => 'date',
-            'errorCode'    => 'integer'
+            'errorCode'    => 'integer',
         ],
         3 => [
             'jobId'  => 'integer',
             'phone'  => 'string',
-            'status' => 'integer'
-        ]
+            'status' => 'integer',
+        ],
     ];
 
     /**
@@ -73,7 +71,7 @@ class NetgsmSmsReport extends AbstractNetgsmReport
         'length'       => null,
         'startDate'    => null,
         'startTime'    => null,
-        'errorCode'    => null
+        'errorCode'    => null,
     ];
 
     /**

@@ -32,7 +32,7 @@ class NetGsmReportDetailTest extends BaseTestCase
 
         $this->netgsm = new Netgsm($this->httpClient, [
             'user_code' => $this->faker->userName,
-            'secret'    => $this->faker->password
+            'secret'    => $this->faker->password,
         ]);
     }
 
@@ -58,7 +58,7 @@ class NetGsmReportDetailTest extends BaseTestCase
         $lastResponse = new Response(
             $status = 200,
             $headers = [],
-            "100"
+            '100'
         );
 
         $responses[] = $lastResponse;
@@ -85,9 +85,10 @@ class NetGsmReportDetailTest extends BaseTestCase
                 'header'    => $this->faker->word,
                 'message'   => $this->faker->sentence,
                 'status'    => $this->faker->randomElement(range(1, 9)),
-                'total'     => $this->faker->numberBetween(1, 10)
+                'total'     => $this->faker->numberBetween(1, 10),
             ];
         }
+
         return $response;
     }
 
@@ -101,7 +102,6 @@ class NetGsmReportDetailTest extends BaseTestCase
         $child = $xml->addChild('header');
 
         foreach ($items as $item) {
-
             $report = $child->addChild('SMSReport');
 
             $datetimeChild = $report->addChild('datetime');
@@ -111,7 +111,7 @@ class NetGsmReportDetailTest extends BaseTestCase
             $msgInfoChild = $report->addChild('msginfo');
             $msgInfoChild->addChild('jobID', $item['jobId']);
             $msgInfoChild->addChild('msgheader', $item['header']);
-            $msgInfoChild->addChild('groups', "--");
+            $msgInfoChild->addChild('groups', '--');
             $msgInfoChild->addChild('msg', $item['message']);
             $msgInfoChild->addChild('state', $item['status']);
             $msgInfoChild->addChild('total', $item['total']);
@@ -183,7 +183,7 @@ class NetGsmReportDetailTest extends BaseTestCase
         $this->mockReportApiRequest($rowCount, $pages);
 
         $filters = [
-            'type' => $type
+            'type' => $type,
         ];
 
         if ($type == 0) {
@@ -222,7 +222,7 @@ class NetGsmReportDetailTest extends BaseTestCase
         $this->expectExceptionCode($errorCode);
 
         $this->netgsm->getReports($report, $startDate, $endDate, [
-            'version' => $version
+            'version' => $version,
         ]);
     }
 
@@ -242,7 +242,7 @@ class NetGsmReportDetailTest extends BaseTestCase
         $endDate = new Carbon();
 
         $reportCollection = $this->netgsm->getReports($report, $startDate, $endDate, [
-            'version' => $version
+            'version' => $version,
         ])->keyBy('jobId');
 
         foreach ($reportCollection as $jobId => $item) {

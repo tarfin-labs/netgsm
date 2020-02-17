@@ -2,7 +2,6 @@
 
 namespace TarfinLabs\Netgsm\Tests\notification;
 
-
 use Illuminate\Notifications\Notification;
 use TarfinLabs\Netgsm\NetgsmSmsMessage;
 

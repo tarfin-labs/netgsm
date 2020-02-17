@@ -1,8 +1,6 @@
 <?php
 
-
 namespace TarfinLabs\Netgsm;
-
 
 use TarfinLabs\Netgsm\Exceptions\CouldNotSendNotification;
 
@@ -26,7 +24,7 @@ class NetgsmOtpMessage extends AbstractNetgsmMessage
         'password',
         'msgheader',
         'msg',
-        'no'
+        'no',
     ];
 
     /**
