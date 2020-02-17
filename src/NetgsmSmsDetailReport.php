@@ -16,14 +16,14 @@ class NetgsmSmsDetailReport extends AbstractNetgsmReport
      * @var array
      */
     protected $errorCodes = [
-        30, 60, 65, 70
+        30, 60, 65, 70,
     ];
 
     /**
      * @var array
      */
     protected $noResultCodes = [
-        100, 101
+        100, 101,
     ];
 
     /**
@@ -34,14 +34,14 @@ class NetgsmSmsDetailReport extends AbstractNetgsmReport
     protected $paginated = true;
 
     /**
-     * Default filter parameters
+     * Default filter parameters.
      *
      * @var array
      */
     protected $filters = [
         'type'    => 1,
         'version' => 1,
-        'view'    => 2
+        'view'    => 2,
     ];
 
     /**
@@ -62,7 +62,7 @@ class NetgsmSmsDetailReport extends AbstractNetgsmReport
     }
 
     /**
-     * Processes the report line
+     * Processes the report line.
      *
      * @param $line
      * @return array
@@ -70,13 +70,13 @@ class NetgsmSmsDetailReport extends AbstractNetgsmReport
     public function processRow($line): array
     {
         return [
-            'jobId'     => (integer) $line->msginfo->jobID,
+            'jobId'     => (int) $line->msginfo->jobID,
             'message'   => (string) $line->msginfo->msg,
             'startDate' => (string) $line->datetime->startdate,
             'endDate'   => (string) $line->datetime->stopdate,
             'status'    => (string) $line->msginfo->state,
             'total'     => (string) $line->msginfo->total,
-            'header'    => (string) $line->msginfo->msgheader
+            'header'    => (string) $line->msginfo->msgheader,
         ];
     }
 

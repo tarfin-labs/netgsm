@@ -31,7 +31,7 @@ class NetGsmReportTest extends BaseTestCase
 
         $this->netgsm = new Netgsm($this->httpClient, [
             'user_code' => $this->faker->userName,
-            'secret'    => $this->faker->password
+            'secret'    => $this->faker->password,
         ]);
     }
 
@@ -53,7 +53,7 @@ class NetGsmReportTest extends BaseTestCase
      * @param $rowCount
      * @return array
      */
-    protected function generateResponse($version, $rowCount):array
+    protected function generateResponse($version, $rowCount): array
     {
         $response = [];
         switch ($version) {
@@ -63,7 +63,7 @@ class NetGsmReportTest extends BaseTestCase
                     $item = [
                         $this->faker->numberBetween(11111, 99999),
                         $this->faker->e164PhoneNumber,
-                        $this->faker->randomElement([0, 1, 2, 3, 4, 11, 12, 13, 100, 103])
+                        $this->faker->randomElement([0, 1, 2, 3, 4, 11, 12, 13, 100, 103]),
                     ];
                     $response[] = $item;
                 }
@@ -79,8 +79,8 @@ class NetGsmReportTest extends BaseTestCase
                         $this->faker->dateTime->format('d.m.Y'),
                         $this->faker->dateTime->format('H:i:s'),
                         $this->faker->randomElement([
-                            0, 101, 102, 103, 104, 105, 106, 111, 112, 113, 114, 115, 116, 117, 119
-                        ])
+                            0, 101, 102, 103, 104, 105, 106, 111, 112, 113, 114, 115, 116, 117, 119,
+                        ]),
                     ];
                     $response[] = $item;
                 }
@@ -91,13 +91,14 @@ class NetGsmReportTest extends BaseTestCase
                         $this->faker->numberBetween(11111, 99999),
                         $this->faker->randomElement([0, 1, 2, 3, 4, 11, 12, 13, 100, 103]),
                         $this->faker->randomElement([
-                            0, 101, 102, 103, 104, 105, 106, 111, 112, 113, 114, 115, 116, 117, 119
-                        ])
+                            0, 101, 102, 103, 104, 105, 106, 111, 112, 113, 114, 115, 116, 117, 119,
+                        ]),
                     ];
                     $response[] = $item;
                 }
                 break;
         }
+
         return $response;
     }
 
@@ -181,7 +182,7 @@ class NetGsmReportTest extends BaseTestCase
         $endDate = new Carbon();
 
         $report = $this->netgsm->getReports($report, $startDate, $endDate, [
-            'version' => $version
+            'version' => $version,
         ]);
 
         $this->assertSame($report->count(), $rowCount);
@@ -204,7 +205,7 @@ class NetGsmReportTest extends BaseTestCase
         $this->expectExceptionCode($errorCode);
 
         $this->netgsm->getReports($report, $startDate, $endDate, [
-            'version' => $version
+            'version' => $version,
         ]);
     }
 
@@ -226,10 +227,10 @@ class NetGsmReportTest extends BaseTestCase
         $endDate = new Carbon();
 
         $reportCollection = $this->netgsm->getReports($report, $startDate, $endDate, [
-            'version' => $version
+            'version' => $version,
         ])->keyBy('jobId');
 
-        foreach($reportCollection as $jobId => $item){
+        foreach ($reportCollection as $jobId => $item) {
             $existingItem = array_filter($collection[$jobId]);
             $item = array_filter($item);
             $this->assertTrue($existingItem == $item);

@@ -12,7 +12,7 @@ class NetgsmSmsMessage extends AbstractNetgsmMessage
         '20' => CouldNotSendNotification::MESSAGE_TOO_LONG,
         '30' => CouldNotSendNotification::CREDENTIALS_INCORRECT,
         '40' => CouldNotSendNotification::SENDER_INCORRECT,
-        '70' => CouldNotSendNotification::PARAMETERS_INCORRECT
+        '70' => CouldNotSendNotification::PARAMETERS_INCORRECT,
     ];
 
     protected $fields = [
@@ -24,7 +24,7 @@ class NetgsmSmsMessage extends AbstractNetgsmMessage
         'startdate',
         'stopdate',
         'dil',
-        'izin'
+        'izin',
     ];
 
     /**
@@ -63,11 +63,9 @@ class NetgsmSmsMessage extends AbstractNetgsmMessage
             'usercode'  => $this->credentials['user_code'],
             'password'  => $this->credentials['secret'],
             'message'   => $this->message,
-            'startdate' => !empty($this->startDate) ? $this->startDate->format('dmYHi') : null,
-            'stopdate'  => !empty($this->endDate) ? $this->endDate->format('dmYHi') : null,
-            'izin'      => (int) $this->isAuthorizedData()
+            'startdate' => ! empty($this->startDate) ? $this->startDate->format('dmYHi') : null,
+            'stopdate'  => ! empty($this->endDate) ? $this->endDate->format('dmYHi') : null,
+            'izin'      => (int) $this->isAuthorizedData(),
         ];
     }
-
-
 }
