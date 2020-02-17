@@ -13,10 +13,25 @@
             "name": "hakan özdemir",
             "email": "hakanozdemirr@gmail.com",
             "role": "Developer"
+        },
+        {
+            "name": "Faruk Can",
+            "email": "faruk.can@tarfin.com",
+            "role": "Developer"
+        },
+        {
+            "name": "Yunus Emre Deligöz",
+            "email": "emre.deligoz@tarfin.com",
+            "role": "Developer"
+        },
+        {
+            "name": "Turan Karatuğ",
+            "email": "turan.karatug@tarfin.com",
+            "role": "Developer"
         }
     ],
     "require": {
-        "php": "^7.4",
+        "php": "^7.2",
         "guzzlehttp/guzzle": "^6.5",
         "illuminate/support": "^6.0",
         "illuminate/notifications": "~6.0",
