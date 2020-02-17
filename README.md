@@ -1,4 +1,5 @@
-# Laravel Netgsm
+![Laravel Config Logo](https://s3-eu-west-1.amazonaws.com/media.tarfin.com/assets/logo-netgsm.svg)
+
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/tarfin-labs/netgsm.svg?style=flat-square)](https://packagist.org/packages/tarfin-labs/laravel-config)
 ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/tarfin-labs/netgsm/tests?label=tests)
 [![Quality Score](https://img.shields.io/scrutinizer/g/tarfin-labs/netgsm.svg?style=flat-square)](https://scrutinizer-ci.com/g/tarfin-labs/laravel-config)
@@ -24,6 +25,19 @@ Also, this package provides simple reporting.
 - [Credits](#credits)
 - [License](#license)
 
+
+## Installation
+
+You can install the package via composer:
+
+```bash
+composer require tarfin-labs/netgsm
+```
+Next, you should publish the Laravel config migration file using the vendor:publish Artisan command.
+
+```
+php artisan vendor:publish --provider="TarfinLabs\Netgsm\NetgsmServiceProvider" --tag="netgsm"
+```
 
 ## Installation
 
