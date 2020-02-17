@@ -54,6 +54,17 @@ class NetgsmOtpMessage extends AbstractNetgsmMessage
         return $xml;
     }
 
+    /**
+     * @return string
+     */
+    public function getUrl(): string
+    {
+        return $this->url;
+    }
+
+    /**
+     * @return array
+     */
     protected function mappers(): array
     {
         return [

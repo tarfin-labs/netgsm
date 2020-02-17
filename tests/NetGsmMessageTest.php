@@ -40,7 +40,7 @@ class NetGsmMessageTest extends BaseTestCase
     /** @test */
     public function it_can_set_send_method()
     {
-        $method = $this->faker->randomElement(['xml', 'http']);
+        $method = $this->faker->randomElement(['xml', 'get']);
 
         $message = (new NetgsmSmsMessage)->setSendMethod($method);
 

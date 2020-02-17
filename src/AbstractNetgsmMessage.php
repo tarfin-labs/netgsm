@@ -15,7 +15,7 @@ abstract class AbstractNetgsmMessage
         '00', '01', '02',
     ];
 
-    protected $sendMethods = ['xml', 'http'];
+    protected $sendMethods = ['xml', 'get'];
 
     /**
      * @var string
@@ -358,11 +358,11 @@ abstract class AbstractNetgsmMessage
      * @throws IncorrectPhoneNumberFormatException
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    protected function sendViaHttp(): self
+    protected function sendViaGet(): self
     {
         $query = http_build_query($this->body());
 
-        $this->response = $this->client->request('GET', $this->url.'?'.$query);
+        $this->response = $this->client->request('GET', $this->getUrl().'?'.$query);
 
         return $this->parseResponse();
     }

@@ -34,7 +34,7 @@ class NetGsmTest extends BaseTestCase
         ],[
             'language' => $this->faker->languageCode,
             'header' => $this->faker->word,
-            'sms_sending_method' => $this->faker->randomElement(['xml','http'])
+            'sms_sending_method' => $this->faker->randomElement(['xml','get'])
         ]);
     }
 
