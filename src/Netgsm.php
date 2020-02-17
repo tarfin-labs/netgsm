@@ -36,7 +36,6 @@ class Netgsm
     public function sendSms(AbstractNetgsmMessage $netgsmMessage)
     {
         try {
-
             $netgsmMessage
                 ->setClient($this->client)
                 ->setCredentials($this->credentials)
@@ -80,10 +79,10 @@ class Netgsm
 
         if (count($filters) > 0) {
             foreach ($filters as $filter => $value) {
-                if (!method_exists($report, 'set'.$filter)) {
+                if (! method_exists($report, 'set'.$filter)) {
                     continue;
                 }
-                
+
                 call_user_func([$report, 'set'.$filter], $value);
             }
         }

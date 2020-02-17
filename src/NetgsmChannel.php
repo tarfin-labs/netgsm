@@ -26,7 +26,7 @@ class NetgsmChannel
     {
         $message = $notification->toNetgsm($notifiable);
 
-        if (!$message instanceof AbstractNetgsmMessage) {
+        if (! $message instanceof AbstractNetgsmMessage) {
             throw new \Exception('Geçerli bir Netgsm mesajı değil');
         }
 
