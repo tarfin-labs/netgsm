@@ -114,7 +114,7 @@ You can use NetGsmOtpMessage instead of NetGsmSmsMessage to send an otp message.
 return (new NetGsmOtpMessage("Your {$notifiable->service} OTP Token Is : {$notifiable->otp_token}"));
 ```
 
-For more information on sending OTP messages [Netgsm OTP SMS Documentation]("https://www.netgsm.com.tr/dokuman/#otp-sms")
+For more information on sending OTP messages [Netgsm OTP SMS Documentation](https://www.netgsm.com.tr/dokuman/#otp-sms)
 
 #### Sms Sending with Using Netgsm Facade
 
