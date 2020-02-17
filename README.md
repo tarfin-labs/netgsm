@@ -83,7 +83,7 @@ You can add recipients (single value or array)
 return (new NetGsmSmsMessage("Your {$notifiable->service} was ordered!"))->setRecipients($recipients);
 ```
 
-You can also set the sending date range of the message. (It does not work on otp messages.)
+You can also set the sending date range of the message. (It does not work on OTP messages.)
 
 ``` php
 $startDate = Carbon::now()->addDay(10)->setTime(0, 0, 0);
@@ -94,7 +94,7 @@ return (new NetGsmSmsMessage("Great note from the future!"))
 ->setEndDate($endDate)
 ```
 
-You can set authorized data parameter (It does not work on otp messages.)
+You can set authorized data parameter (It does not work on OTP messages.)
 
 If this parameter value is sent as true, only sms will be sent to phone numbers that have data permission.
 
@@ -108,7 +108,7 @@ Additionally you can change header
 return (new NetGsmSmsMessage("Your {$notifiable->service} was ordered!"))->setHeader("COMPANY");
 ```
 
-You can use NetGsmOtpMessage instead of NetGsmSmsMessage to send an otp message.
+You can use NetGsmOtpMessage instead of NetGsmSmsMessage to send an OTP message.
 
 ``` php
 return (new NetGsmOtpMessage("Your {$notifiable->service} OTP Token Is : {$notifiable->otp_token}"));
@@ -118,7 +118,7 @@ For more information on sending OTP messages [Netgsm OTP SMS Documentation](http
 
 #### Sms Sending with Using Netgsm Facade
 
-You can also send sms or otp messages using Netgsm Facade directly:
+You can also send SMS or OTP messages using Netgsm Facade directly:
 
 ``` php
 
