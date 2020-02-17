@@ -1,22 +1,43 @@
+![Laravel Config Logo](https://s3-eu-west-1.amazonaws.com/media.tarfin.com/assets/logo-netgsm.svg)
+
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/tarfin-labs/netgsm.svg?style=flat-square)](https://packagist.org/packages/tarfin-labs/laravel-config)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/tarfin-labs/netgsm/tests?label=tests)
+[![Quality Score](https://img.shields.io/scrutinizer/g/tarfin-labs/netgsm.svg?style=flat-square)](https://scrutinizer-ci.com/g/tarfin-labs/laravel-config)
+[![Total Downloads](https://img.shields.io/packagist/dt/tarfin-labs/netgsm.svg?style=flat-square)](https://packagist.org/packages/tarfin-labs/laravel-config)
+
 ## Introduction
-With this package, you can send sms and get sms reports by using Netgsm service on laravel 6.x.
+With this package, you can send easily [Netgsm notifications](https://www.netgsm.com.tr/dokuman/#api-dok%C3%BCman%C4%B1) with Laravel 6.x. 
+Also, this package provides simple reporting.
 
 ## Contents
 
 - [Installation](#installation)
-	- [Setting up the Netgsm service](#setting-up-the-Netgsm-service)
+   - [Setting up the Netgsm service](#setting-up-the-Netgsm-service)
 - [Usage](#usage)
     - [Service Methods](#service-methods)
     - [SMS Sending](#sms-sending)
-	    - [Available SMS Interfaces](#available-sms-interfaces)
-	- [Reporting](#reporting)
-	    - [Available Reporting Interfaces](#available-report-interfaces)
+       - [Available SMS Interfaces](#available-sms-interfaces)
+   - [Reporting](#reporting)
+       - [Available Reporting Interfaces](#available-report-interfaces)
 - [Testing](#testing)
 - [Security](#security)
 - [Contributing](#contributing)
 - [Credits](#credits)
 - [License](#license)
 
+
+## Installation
+
+You can install the package via composer:
+
+```bash
+composer require tarfin-labs/netgsm
+```
+Next, you should publish the Laravel config migration file using the vendor:publish Artisan command.
+
+```
+php artisan vendor:publish --provider="TarfinLabs\Netgsm\NetgsmServiceProvider" --tag="netgsm"
+```
 
 ## Installation
 
@@ -46,7 +67,7 @@ NETGSM_HEADER=
  Netgsm::sendSms(AbstractSmsMessage $message):string $JobId
 ```
 Sends an SMS message to the phone number on the message object passed as a parameter. 
-If the message is sent successfully, a job id returned from the netgsm api service is returned.
+If the message is sent successfully, a job id returned from the netgsm API service is returned.
 
 ```php
 Netgsm::getReports(AbstractNetgsmReport $report): ?Collection
@@ -77,7 +98,7 @@ class NewUserRegistered extends Notification
 }
 ```
 
-You can add recipients (single value or array)
+You can add recipients (string or array)
 
 ``` php
 return (new NetGsmSmsMessage("Your {$notifiable->service} was ordered!"))->setRecipients($recipients);
@@ -96,13 +117,13 @@ return (new NetGsmSmsMessage("Great note from the future!"))
 
 You can set authorized data parameter (It does not work on OTP messages.)
 
-If this parameter value is sent as true, only sms will be sent to phone numbers that have data permission.
+If this parameter passes as true, only SMS will be sent to phone numbers that have data permission.
 
 ``` php
 return (new NetGsmSmsMessage("Your {$notifiable->service} was ordered!"))->setAuthorizedData(true);
 ```
 
-Additionally you can change header
+Additionally, you can change the header.
 
 ``` php
 return (new NetGsmSmsMessage("Your {$notifiable->service} was ordered!"))->setHeader("COMPANY");
@@ -132,9 +153,9 @@ Netgsm::sendSms($message);
 
 #### Reporting
 
-You can get sms reports by date range or netgsm bulk id. 
+You can get SMS reports by date range or netgsm bulk id. 
 
-In order to receive a report, a report object must be created.
+To receive a report, a report object must be created.
 
 ``` php
 $report = new NetgsmSmsReport();
@@ -148,20 +169,20 @@ $report = new NetgsmSmsReport();
 
 ##### Object Parameters
 
-| Method        	| Description		| Type | Required | NetgsmSmsReport Support | NetgsmSmsDetailReport Support | 
-| ------------	| -----------		| ---- |  -------- | --------------- | ----------------------------- |
-| setStartDate()	| Start Date 		| Carbon | No | Yes | Yes 
-| setEndDate()	| End Date		| Carbon | No | Yes | Yes 
-| setBulkId()		| Netgsm Job Id	| Integer | No | Yes | Yes 
-| setStatus()		| Message Status	| Integer | No | Yes | No 
-| setPhone()		| Phone Number	| String[] | No | Yes | Yes 
-| setHeader()		| Header			| String | No | Yes | Yes 
-| setVersion()	| API Version		| Integer | No | Yes | Yes 
+| Method           | Description     | Type | Required | NetgsmSmsReport Support | NetgsmSmsDetailReport Support | 
+| ------------ | -----------     | ---- |  -------- | --------------- | ----------------------------- |
+| setStartDate()   | Start Date      | Carbon | No | Yes | Yes 
+| setEndDate() | End Date    | Carbon | No | Yes | Yes 
+| setBulkId()     | Netgsm Job Id    | Integer | No | Yes | Yes 
+| setStatus()     | Message Status   | Integer | No | Yes | No 
+| setPhone()      | Phone Number | String[] | No | Yes | Yes 
+| setHeader()     | Header         | String | No | Yes | Yes 
+| setVersion() | API Version     | Integer | No | Yes | Yes 
 
 ##### Sample Usage
 
-You can get the sms report by passing the report object to the Netgsm::getReports method. 
-If successful, sms report results will be returned as a collection. 
+You can get the SMS report to passing the report object to the Netgsm::getReports method. 
+If successful, SMS report results will be returned as a collection. 
 
 ``` php
 // Start and end dates
@@ -204,25 +225,25 @@ composer test
 
 ### Changelog
 
-Please see [CHANGELOG](CHANGELOG.md) for more information what has changed recently.
+Please see [CHANGELOG](CHANGELOG.md) for more information about what has changed recently.
 
 ## Contributing
 
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
-Please make sure to update tests as appropriate.
+Please make sure to update the tests as appropriate.
 
 ### Security
 
-If you discover any security related issues, please email development@tarfin.com instead of using the issue tracker.
+If you discover any security-related issues, please email development@tarfin.com instead of using the issue tracker.
 
 
 ## Credits
 
-- [Turan Karatuğ](https://github.com/tkaratug)
+- [Hakan Özdemir](https://github.com/hozdemir)
 - [Faruk Can](https://github.com/frkcn)
 - [Yunus Emre Deligöz](https://github.com/deligoez)
-- [Hakan Özdemir](https://github.com/hozdemir)
+- [Turan Karatuğ](https://github.com/tkaratug)
 - [All Contributors](../../contributors)
 
 ### License

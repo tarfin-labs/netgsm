@@ -26,7 +26,4 @@ jobs:
                 run: composer install --no-progress --no-ansi --profile --no-interaction --no-scripts --no-suggest --prefer-dist
 
             -   name: Execute tests
-                env:
-                    DB_CONNECTION: sqlite
-                    DB_DATABASE: ":memory:"
                 run: vendor/bin/phpunit --testdox --colors=always --exclude-group skipped
