@@ -1,16 +1,13 @@
 <?php
 
-/*
- * You can place your custom package configuration in here.
- */
 return [
     'credentials' => [
-        'user_code' => '',
-        'secret' => ''
+        'user_code' => env('NETGSM_USERCODE'),
+        'secret'    => env('NETGSM_SECRET')
     ],
-    'defaults' => [
-        'language' => 'tr',
-        'header' => null,
-        'sms_sending_method' => 'http'
+    'defaults'    => [
+        'language'           => env('NETGSM_SECRET', 'tr'),
+        'header'             => env('NETGSM_HEADER', null),
+        'sms_sending_method' => env('NETGSM_SMS_SENDING_METHOD', 'http')
     ]
 ];

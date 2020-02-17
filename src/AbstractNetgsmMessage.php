@@ -2,6 +2,7 @@
 
 namespace TarfinLabs\Netgsm;
 
+use Exception;
 use GuzzleHttp\ClientInterface;
 use Illuminate\Support\Carbon;
 use Psr\Http\Message\ResponseInterface;
@@ -13,6 +14,8 @@ abstract class AbstractNetgsmMessage
     private const SUCCESS_CODES = [
         '00', '01', '02',
     ];
+
+    protected $sendMethods = ['xml', 'http'];
 
     /**
      * @var string
@@ -193,12 +196,16 @@ abstract class AbstractNetgsmMessage
     }
 
     /**
-     *
-     * @param  mixed  $sendMethod
-     * @return AbstractNetgsmMessage
+     * @param  string  $sendMethod
+     * @return $this
+     * @throws Exception
      */
-    public function setSendMethod($sendMethod): self
+    public function setSendMethod(string $sendMethod): self
     {
+        if (!in_array($sendMethod, $this->sendMethods)) {
+            throw new Exception($sendMethod." method is not allowed");
+        }
+
         $this->sendMethod = $sendMethod;
         return $this;
     }
@@ -233,7 +240,7 @@ abstract class AbstractNetgsmMessage
     /**
      * @throws IncorrectPhoneNumberFormatException
      */
-    protected function validateRecipients():void
+    protected function validateRecipients(): void
     {
         if (count($this->recipients) == 0) {
             throw new IncorrectPhoneNumberFormatException();

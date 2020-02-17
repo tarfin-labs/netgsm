@@ -194,7 +194,7 @@ class NetGsmReportTest extends BaseTestCase
     {
         $version = $this->faker->randomElement([0, 1, 2, 3]);
         $report = $this->newSmsReport();
-        $errorCode = $this->faker->randomElement([30, 60, 70, 100, 101]);
+        $errorCode = $this->faker->randomElement([30, 70, 100, 101]);
         $this->mockReportApiRequest($errorCode);
 
         $startDate = new Carbon();

@@ -27,23 +27,6 @@ composer require tarfin-labs/netgsm
 ```
 ### Setting up the Netgsm service
 
-Add the environment variables to your `config/netgsm.php`:
-
-```php
-// config/netgsm.php
-...
-'credentials' => [
-    'user_code' => env('NETGSM_USER_CODE'),
-    'secret' => env('NETGSM_SECRET'),
-],
-'defaults' => [
-    'language' => env('NETGSM_LANGUAGE'),
-    'header' => env('NETGSM_HEADER'),
-    'sms_sending_method' => env('NETGSM_SMS_SENDING_METHOD'), //available methods (xml, http)
-],
-...
-```
-
 Add your Netgsm User Code, Default header (name or number of sender), and secret (password) to your `.env`:
 
 ```php
@@ -59,14 +42,17 @@ NETGSM_HEADER=
 ### Usage
 #### Service Methods
 
- - Netgsm::sendSms(AbstractSmsMessage $message):string $JobId
-
+```php
+ Netgsm::sendSms(AbstractSmsMessage $message):string $JobId
+```
 Sends an SMS message to the phone number on the message object passed as a parameter. 
 If the message is sent successfully, a job id returned from the netgsm api service is returned.
 
- - Netgsm::getReports(AbstractNetgsmReport $report): ?Collection
- 
-Returns an sms report based on the report object passed as a parameter.
+```php
+Netgsm::getReports(AbstractNetgsmReport $report): ?Collection
+```
+
+Returns a collection based on the report object passed as a parameter.
 
 #### Sms Sending with Using Notification Channel
 
@@ -162,15 +148,15 @@ $report = new NetgsmSmsReport();
 
 ##### Object Parameters
 
-| Method        | Description | Type | Required | NetgsmSmsReport Support | NetgsmSmsDetailReport Support | 
-| :------------|: ---- | :---- | :-------- | :--------------- | :--------------------- |
-| setStartDate() |Start Date| Carbon | No | Yes | Yes 
-| setEndDate() | End Date |Carbon | No | Yes | Yes 
-| setBulkId() | Netgsm Job Id | Integer | No | Yes | Yes 
-| setStatus() | Message Status |Integer | No | Yes | No 
-| setPhone() | Phone Number | String Seperated by comma | No | Yes | Yes 
-| setHeader() | Header | String | No | Yes | Yes 
-| setVersion() | API Version |  Integer | No | Yes | Yes 
+| Method        	| Description		| Type | Required | NetgsmSmsReport Support | NetgsmSmsDetailReport Support | 
+| ------------	| -----------		| ---- |  -------- | --------------- | ----------------------------- |
+| setStartDate()	| Start Date 		| Carbon | No | Yes | Yes 
+| setEndDate()	| End Date		| Carbon | No | Yes | Yes 
+| setBulkId()		| Netgsm Job Id	| Integer | No | Yes | Yes 
+| setStatus()		| Message Status	| Integer | No | Yes | No 
+| setPhone()		| Phone Number	| String[] | No | Yes | Yes 
+| setHeader()		| Header			| String | No | Yes | Yes 
+| setVersion()	| API Version		| Integer | No | Yes | Yes 
 
 ##### Sample Usage
 
@@ -179,15 +165,15 @@ If successful, sms report results will be returned as a collection.
 
 ``` php
 // Start and end dates
-        $startDate = Carbon::now()->subDay()->setTime(0, 0, 0);
-        $endDate = Carbon::now()->setTime(0, 0, 0);
-        
-        $report = new NetgsmSmsReport();
-        $report->setStartDate($startDate)
-            ->setEndDate($endDate);
+$startDate = Carbon::now()->subDay()->setTime(0, 0, 0);
+$endDate = Carbon::now()->setTime(0, 0, 0);
 
-        $reports = Netgsm::getReports($report);
-        Netgsm::getReports($report);
+$report = new NetgsmSmsReport();
+$report->setStartDate($startDate)
+    ->setEndDate($endDate);
+
+$reports = Netgsm::getReports($report);
+Netgsm::getReports($report);
 ```
 
 Fields in the report result may differ depending on the specified report type and the report version parameter sent.

@@ -38,6 +38,26 @@ class NetGsmMessageTest extends BaseTestCase
     }
 
     /** @test */
+    public function it_can_set_send_method()
+    {
+        $method = $this->faker->randomElement(['xml', 'http']);
+
+        $message = (new NetgsmSmsMessage)->setSendMethod($method);
+
+        $this->assertEquals($method, $message->getSendMethod());
+    }
+
+    /** @test */
+    public function it_can_set_needs_authorized_data()
+    {
+        $authorizedData = $this->faker->boolean;
+
+        $message = (new NetgsmSmsMessage)->setAuthorizedData($authorizedData);
+
+        $this->assertEquals($authorizedData, $message->isAuthorizedData());
+    }
+
+    /** @test */
     public function it_can_set_recipients_from_array()
     {
         $message = (new NetgsmSmsMessage)->setRecipients([31650520659, 31599858770]);
