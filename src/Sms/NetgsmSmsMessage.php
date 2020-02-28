@@ -1,23 +1,21 @@
 <?php
 
-namespace TarfinLabs\Netgsm;
+namespace TarfinLabs\Netgsm\Sms;
 
-use TarfinLabs\Netgsm\Exceptions\CouldNotSendNotification;
+use TarfinLabs\Netgsm\NetgsmErrors;
 
 class NetgsmSmsMessage extends AbstractNetgsmMessage
 {
-    protected $url = 'https://api.netgsm.com.tr/sms/send';
+    protected $url = 'sms/send';
 
     protected $errorCodes = [
-        '20' => CouldNotSendNotification::MESSAGE_TOO_LONG,
-        '30' => CouldNotSendNotification::CREDENTIALS_INCORRECT,
-        '40' => CouldNotSendNotification::SENDER_INCORRECT,
-        '70' => CouldNotSendNotification::PARAMETERS_INCORRECT,
+        '20' => NetgsmErrors::MESSAGE_TOO_LONG,
+        '30' => NetgsmErrors::CREDENTIALS_INCORRECT,
+        '40' => NetgsmErrors::SENDER_INCORRECT,
+        '70' => NetgsmErrors::PARAMETERS_INCORRECT,
     ];
 
     protected $fields = [
-        'usercode',
-        'password',
         'gsmno',
         'message',
         'msgheader',
@@ -60,8 +58,6 @@ class NetgsmSmsMessage extends AbstractNetgsmMessage
         return [
             'gsmno'     => implode(',', $this->recipients),
             'msgheader' => $this->header ?? $this->defaults['header'],
-            'usercode'  => $this->credentials['user_code'],
-            'password'  => $this->credentials['secret'],
             'message'   => $this->message,
             'startdate' => ! empty($this->startDate) ? $this->startDate->format('dmYHi') : null,
             'stopdate'  => ! empty($this->endDate) ? $this->endDate->format('dmYHi') : null,

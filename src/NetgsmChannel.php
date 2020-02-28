@@ -2,7 +2,10 @@
 
 namespace TarfinLabs\Netgsm;
 
+use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Notifications\Notification;
+use TarfinLabs\Netgsm\Exceptions\IncorrectPhoneNumberFormatException;
+use TarfinLabs\Netgsm\Sms\AbstractNetgsmMessage;
 
 class NetgsmChannel
 {
@@ -19,8 +22,8 @@ class NetgsmChannel
      * @param $notifiable
      * @param  Notification  $notification
      * @throws Exceptions\CouldNotSendNotification
-     * @throws Exceptions\IncorrectPhoneNumberFormatException
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
+     * @throws IncorrectPhoneNumberFormatException
      */
     public function send($notifiable, Notification $notification)
     {

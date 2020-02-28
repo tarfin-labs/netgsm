@@ -35,7 +35,12 @@ class NetgsmServiceProvider extends ServiceProvider
                 throw InvalidConfiguration::configurationNotSet();
             }
 
-            return new Netgsm(new Client(), $config['credentials'], $config['defaults']);
+            $client = new Client([
+                'base_uri' => $config['defaults']['base_uri'],
+                'timeout'  => $config['defaults']['timeout'],
+            ]);
+
+            return new Netgsm($client, $config['credentials'], $config['defaults']);
         });
     }
 }

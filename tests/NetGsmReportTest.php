@@ -9,7 +9,7 @@ use Illuminate\Support\Collection;
 use Mockery;
 use TarfinLabs\Netgsm\Exceptions\ReportException;
 use TarfinLabs\Netgsm\Netgsm;
-use TarfinLabs\Netgsm\NetgsmSmsReport;
+use TarfinLabs\Netgsm\Report\NetgsmSmsReport;
 
 class NetGsmReportTest extends BaseTestCase
 {

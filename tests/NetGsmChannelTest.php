@@ -43,8 +43,8 @@ class NetGsmChannelTest extends BaseTestCase
         $this->notifiable = new TestNotifiable;
 
         $this->netgsm = Mockery::mock(new Netgsm($this->httpClient, [
-            'userCode' => '',
-            'secret' => '',
+            'user_code' => '',
+            'secret'    => '',
         ]));
 
         $this->channel = new NetGsmChannel($this->netgsm);

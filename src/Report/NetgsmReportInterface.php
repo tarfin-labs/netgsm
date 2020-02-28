@@ -1,6 +1,6 @@
 <?php
 
-namespace TarfinLabs\Netgsm;
+namespace TarfinLabs\Netgsm\Report;
 
 interface NetgsmReportInterface
 {

@@ -8,7 +8,7 @@ use Mockery;
 use TarfinLabs\Netgsm\Exceptions\CouldNotSendNotification;
 use TarfinLabs\Netgsm\Exceptions\IncorrectPhoneNumberFormatException;
 use TarfinLabs\Netgsm\Netgsm;
-use TarfinLabs\Netgsm\NetgsmSmsMessage;
+use TarfinLabs\Netgsm\Sms\NetgsmSmsMessage;
 
 class NetGsmTest extends BaseTestCase
 {

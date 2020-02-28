@@ -4,8 +4,13 @@ namespace TarfinLabs\Netgsm;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Support\Collection;
+use TarfinLabs\Netgsm\Balance\NetgsmPackages;
 use TarfinLabs\Netgsm\Exceptions\CouldNotSendNotification;
+use TarfinLabs\Netgsm\Report\AbstractNetgsmReport;
+use TarfinLabs\Netgsm\Sms\AbstractNetgsmMessage;
+use TarfinLabs\Netgsm\Balance\NetgsmAvailableCredit;
 
 class Netgsm
 {
@@ -31,7 +36,7 @@ class Netgsm
      * @return mixed
      * @throws CouldNotSendNotification
      * @throws Exceptions\IncorrectPhoneNumberFormatException
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      */
     public function sendSms(AbstractNetgsmMessage $netgsmMessage)
     {
@@ -56,7 +61,7 @@ class Netgsm
      * @param $endDate
      * @param  array  $filters
      * @return Collection
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      * @throws Exceptions\ReportException
      */
     public function getReports(
@@ -79,7 +84,7 @@ class Netgsm
 
         if (count($filters) > 0) {
             foreach ($filters as $filter => $value) {
-                if (! method_exists($report, 'set'.$filter)) {
+                if (!method_exists($report, 'set'.$filter)) {
                     continue;
                 }
 
@@ -88,5 +93,34 @@ class Netgsm
         }
 
         return $report->getReports();
+    }
+
+
+    /**
+     * @return string
+     * @throws Exceptions\NetgsmException
+     * @throws GuzzleException
+     */
+    public function getCredit()
+    {
+        $creditService = new NetgsmAvailableCredit();
+        $creditService->setClient($this->client);
+        $creditService->setCredentials($this->credentials);
+
+        return $creditService->getCredit();
+    }
+
+    /**
+     * @return array
+     * @throws Exceptions\NetgsmException
+     * @throws GuzzleException
+     */
+    public function getAvailablePackages():Collection
+    {
+        $packageService = new NetgsmPackages();
+        $packageService->setClient($this->client);
+        $packageService->setCredentials($this->credentials);
+
+        return collect($packageService->getPackages());
     }
 }

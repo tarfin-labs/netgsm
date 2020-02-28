@@ -10,7 +10,7 @@ use Mockery;
 use SimpleXMLElement;
 use TarfinLabs\Netgsm\Exceptions\ReportException;
 use TarfinLabs\Netgsm\Netgsm;
-use TarfinLabs\Netgsm\NetgsmSmsDetailReport;
+use TarfinLabs\Netgsm\Report\NetgsmSmsDetailReport;
 
 class NetGsmReportDetailTest extends BaseTestCase
 {

@@ -1,9 +1,12 @@
 <?php
 
+
 namespace TarfinLabs\Netgsm\Exceptions;
+
 
 use Exception;
 
-class IncorrectPhoneNumberFormatException extends Exception
+class NetgsmException extends Exception
 {
+
 }

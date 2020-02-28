@@ -1,6 +1,6 @@
 <?php
 
-namespace TarfinLabs\Netgsm;
+namespace TarfinLabs\Netgsm\Report;
 
 use Illuminate\Support\Collection;
 use SimpleXMLElement;
@@ -10,7 +10,7 @@ class NetgsmSmsDetailReport extends AbstractNetgsmReport
     /**
      * @var string
      */
-    protected $url = 'https://api.netgsm.com.tr/sms/report/detail';
+    protected $url = 'sms/report/detail';
 
     /**
      * @var array

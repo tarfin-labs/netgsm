@@ -1,27 +1,25 @@
 <?php
 
-namespace TarfinLabs\Netgsm;
+namespace TarfinLabs\Netgsm\Sms;
 
-use TarfinLabs\Netgsm\Exceptions\CouldNotSendNotification;
+use TarfinLabs\Netgsm\NetgsmErrors;
 
 class NetgsmOtpMessage extends AbstractNetgsmMessage
 {
-    protected $url = 'https://api.netgsm.com.tr/sms/send/otp';
+    protected $url = 'sms/send/otp';
 
     protected $errorCodes = [
-        '20'  => CouldNotSendNotification::MESSAGE_TOO_LONG,
-        '30'  => CouldNotSendNotification::CREDENTIALS_INCORRECT,
-        '40'  => CouldNotSendNotification::SENDER_INCORRECT,
-        '50'  => CouldNotSendNotification::RECEIVER_INCORRECT,
-        '60'  => CouldNotSendNotification::OTP_ACCOUNT_NOT_DEFINED,
-        '70'  => CouldNotSendNotification::PARAMETERS_INCORRECT,
-        '80'  => CouldNotSendNotification::QUERY_LIMIT_EXCEED,
-        '100' => CouldNotSendNotification::SYSTEM_ERROR,
+        '20'  => NetgsmErrors::MESSAGE_TOO_LONG,
+        '30'  => NetgsmErrors::CREDENTIALS_INCORRECT,
+        '40'  => NetgsmErrors::SENDER_INCORRECT,
+        '50'  => NetgsmErrors::RECEIVER_INCORRECT,
+        '60'  => NetgsmErrors::OTP_ACCOUNT_NOT_DEFINED,
+        '70'  => NetgsmErrors::PARAMETERS_INCORRECT,
+        '80'  => NetgsmErrors::QUERY_LIMIT_EXCEED,
+        '100' => NetgsmErrors::SYSTEM_ERROR,
     ];
 
     protected $fields = [
-        'usercode',
-        'password',
         'msgheader',
         'msg',
         'no',
@@ -66,8 +64,6 @@ class NetgsmOtpMessage extends AbstractNetgsmMessage
     protected function mappers(): array
     {
         return [
-            'usercode'  => $this->credentials['user_code'],
-            'password'  => $this->credentials['secret'],
             'msgheader' => $this->header ?? $this->defaults['header'],
             'msg'       => $this->message,
             'no'        => is_array($this->recipients) ? $this->recipients[0] : $this->recipients,
