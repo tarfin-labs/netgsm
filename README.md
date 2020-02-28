@@ -53,6 +53,8 @@ NETGSM_HEADER=
 ],
 ...
 ```
+NETGSM_USER_CODE and NETGSM_SECRET is authentication information of netgsm. NETGSM_HEADER is default header (name or number of sender) of sms messages.
+
 ### Usage
 #### Service Methods
 
@@ -69,6 +71,19 @@ Netgsm::getReports(AbstractNetgsmReport $report): ?Collection
 Returns a collection based on the report object passed as a parameter.
 
 #### Sms Sending with Using Notification Channel
+
+In order to let your Notification know which phone number you are sending to, add the routeNotificationForNetgsm method to your Notifiable model e.g your User Model
+
+``` php
+public function routeNotificationForNetgsm()
+{
+    /*
+       where `phone` is a field in your users table, 
+       phone number format can be either `5051234567` or `5051234567, 5441234568`.
+    */
+    return $this->phone;
+}
+```
 
 You can use the channel in your `via()` method inside the notification:
 
