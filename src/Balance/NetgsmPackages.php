@@ -25,7 +25,6 @@ class NetgsmPackages extends NetgsmApiClient
         '100' => NetgsmErrors::NO_RECORD,
     ];
 
-
     /**
      * @return array
      * @throws NetgsmException
@@ -44,9 +43,9 @@ class NetgsmPackages extends NetgsmApiClient
             $columns = array_filter(explode('|', $row));
             $columns = array_map('trim', $columns);
             $availablePackages[] = [
-                'amount'      => (int)$columns[0],
+                'amount'      => (int) $columns[0],
                 'amountType'  => $columns[1] ?? null,
-                'packageType' => $columns[2] ?? null
+                'packageType' => $columns[2] ?? null,
             ];
         }
 

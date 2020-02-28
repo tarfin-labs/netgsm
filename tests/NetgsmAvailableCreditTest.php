@@ -1,6 +1,5 @@
 <?php
 
-
 namespace TarfinLabs\Netgsm\Tests;
 
 use GuzzleHttp\Client;
@@ -46,7 +45,6 @@ class NetgsmAvailableCreditTest extends BaseTestCase
             ));
     }
 
-
     /**
      * @test
      */
@@ -54,7 +52,7 @@ class NetgsmAvailableCreditTest extends BaseTestCase
     {
         $credit = $this->faker->numberBetween(5, 10);
 
-        $response = "00 ".$credit;
+        $response = '00 '.$credit;
 
         $this->mockCreditApiRequest($response);
 

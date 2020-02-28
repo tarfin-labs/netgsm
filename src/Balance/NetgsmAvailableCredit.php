@@ -18,7 +18,7 @@ class NetgsmAvailableCredit extends NetgsmApiClient
      * @var array
      */
     protected $successCodes = [
-        '00'
+        '00',
     ];
 
     protected $url = 'balance/list/get';
@@ -32,22 +32,21 @@ class NetgsmAvailableCredit extends NetgsmApiClient
         '100' => NetgsmErrors::SENDER_INCORRECT,
     ];
 
-
     /**
      * @return string
      * @throws NetgsmException
      */
-    public function parseResponse():?string
+    public function parseResponse(): ?string
     {
         $result = explode(' ', $this->response);
 
-        if (!isset($result[0])) {
+        if (! isset($result[0])) {
             throw new NetgsmException(NetgsmErrors::NETGSM_GENERAL_ERROR);
         }
 
         $code = $result[0];
 
-        if (!in_array($code, $this->successCodes)) {
+        if (! in_array($code, $this->successCodes)) {
             $message = $this->errorCodes[$code];
             throw new NetgsmException($message, $code);
         }
@@ -60,8 +59,8 @@ class NetgsmAvailableCredit extends NetgsmApiClient
      * @throws GuzzleException
      * @throws NetgsmException
      */
-    public function getCredit():?string{
-
+    public function getCredit(): ?string
+    {
         $this->response = $this->callApi('GET', $this->url);
 
         return $this->parseResponse();
