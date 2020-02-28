@@ -2,8 +2,6 @@
 
 namespace TarfinLabs\Netgsm\Tests;
 
-
-
 use TarfinLabs\Netgsm\Sms\NetgsmSmsMessage;
 
 class NetGsmMessageTest extends BaseTestCase

@@ -162,7 +162,6 @@ abstract class AbstractNetgsmReport extends NetgsmApiClient
         $keep = true;
         $allResults = new Collection();
         do {
-
             $rawResponse = $this->callApi('GET', $this->url, $data);
 
             if ($this->paginated) {

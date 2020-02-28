@@ -35,6 +35,7 @@ class NetgsmApiClient
     public function setCredentials(array $credentials): self
     {
         $this->credentials = $credentials;
+
         return $this;
     }
 
@@ -52,23 +53,22 @@ class NetgsmApiClient
             'query' => [
                 'usercode' => $this->credentials['user_code'],
                 'password' => $this->credentials['secret'],
-            ]
+            ],
         ];
 
-        if ($method == 'POST'){
-            if (is_array($params)){
+        if ($method == 'POST') {
+            if (is_array($params)) {
                 $options['form_params'] = $params;
-            }
-            else{
+            } else {
                 $options['body'] = $params;
             }
         }
 
-        if ($method == "GET" && is_array($params)){
+        if ($method == 'GET' && is_array($params)) {
             $options['query'] = array_merge($options['query'], $params);
         }
 
-        if ($headers){
+        if ($headers) {
             $options['headers'] = $headers;
         }
 

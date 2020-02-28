@@ -6,11 +6,11 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Support\Collection;
+use TarfinLabs\Netgsm\Balance\NetgsmAvailableCredit;
 use TarfinLabs\Netgsm\Balance\NetgsmPackages;
 use TarfinLabs\Netgsm\Exceptions\CouldNotSendNotification;
 use TarfinLabs\Netgsm\Report\AbstractNetgsmReport;
 use TarfinLabs\Netgsm\Sms\AbstractNetgsmMessage;
-use TarfinLabs\Netgsm\Balance\NetgsmAvailableCredit;
 
 class Netgsm
 {
@@ -84,7 +84,7 @@ class Netgsm
 
         if (count($filters) > 0) {
             foreach ($filters as $filter => $value) {
-                if (!method_exists($report, 'set'.$filter)) {
+                if (! method_exists($report, 'set'.$filter)) {
                     continue;
                 }
 
@@ -94,7 +94,6 @@ class Netgsm
 
         return $report->getReports();
     }
-
 
     /**
      * @return string
@@ -115,7 +114,7 @@ class Netgsm
      * @throws Exceptions\NetgsmException
      * @throws GuzzleException
      */
-    public function getAvailablePackages():Collection
+    public function getAvailablePackages(): Collection
     {
         $packageService = new NetgsmPackages();
         $packageService->setClient($this->client);

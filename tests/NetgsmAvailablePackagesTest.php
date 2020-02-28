@@ -1,6 +1,5 @@
 <?php
 
-
 namespace TarfinLabs\Netgsm\Tests;
 
 use GuzzleHttp\Client;
@@ -46,24 +45,23 @@ class NetgsmAvailablePackagesTest extends BaseTestCase
             ));
     }
 
-
     /**
      * @test
      */
     public function it_get_available_package_amounts_with_correct_arguments()
     {
-        $response = "1000 | Adet Flash Sms | <BR>953 | Adet OTP Sms | <BR>643 | Adet | SMS<BR>";
+        $response = '1000 | Adet Flash Sms | <BR>953 | Adet OTP Sms | <BR>643 | Adet | SMS<BR>';
 
         $this->mockCreditApiRequest($response);
 
         $response = $this->netgsm->getAvailablePackages();
 
         $this->assertSame($response[0]['amount'], 1000);
-        $this->assertSame($response[0]['amountType'], "Adet Flash Sms");
+        $this->assertSame($response[0]['amountType'], 'Adet Flash Sms');
         $this->assertSame($response[1]['amount'], 953);
-        $this->assertSame($response[1]['amountType'], "Adet OTP Sms");
+        $this->assertSame($response[1]['amountType'], 'Adet OTP Sms');
         $this->assertSame($response[2]['amount'], 643);
-        $this->assertSame($response[2]['amountType'], "Adet");
+        $this->assertSame($response[2]['amountType'], 'Adet');
     }
 
     /**
