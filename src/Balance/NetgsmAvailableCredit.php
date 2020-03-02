@@ -18,7 +18,7 @@ class NetgsmAvailableCredit extends NetgsmApiClient
      * @var array
      */
     protected $successCodes = [
-        '00'
+        '00',
     ];
 
     protected $url = 'balance/list/get';
@@ -46,7 +46,7 @@ class NetgsmAvailableCredit extends NetgsmApiClient
 
         $code = $result[0];
 
-        if (!in_array($code, $this->successCodes)) {
+        if (! in_array($code, $this->successCodes)) {
             $message = $this->errorCodes[$code];
             throw new NetgsmException($message, $code);
         }

@@ -25,7 +25,6 @@ class NetgsmPackages extends NetgsmApiClient
         '100' => NetgsmErrors::SYSTEM_ERROR,
     ];
 
-
     /**
      * @return array
      * @throws NetgsmException
@@ -46,7 +45,7 @@ class NetgsmPackages extends NetgsmApiClient
             $availablePackages[] = [
                 'amount'      => (int) $columns[0],
                 'amountType'  => $columns[1] ?? null,
-                'packageType' => $columns[2] ?? null
+                'packageType' => $columns[2] ?? null,
             ];
         }
 

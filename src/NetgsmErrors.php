@@ -1,6 +1,5 @@
 <?php
 
-
 namespace TarfinLabs\Netgsm;
 
 class NetgsmErrors
