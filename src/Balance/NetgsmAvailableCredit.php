@@ -27,21 +27,20 @@ class NetgsmAvailableCredit extends NetgsmApiClient
      * @var array
      */
     protected $errorCodes = [
-        '30' => NetgsmErrors::CREDENTIALS_INCORRECT,
-        '40' => NetgsmErrors::CREDENTIALS_INCORRECT,
-        '100' => NetgsmErrors::SENDER_INCORRECT,
+        '30'  => NetgsmErrors::CREDENTIALS_INCORRECT,
+        '40'  => NetgsmErrors::CREDENTIALS_INCORRECT,
+        '100' => NetgsmErrors::SYSTEM_ERROR,
     ];
-
 
     /**
      * @return string
      * @throws NetgsmException
      */
-    public function parseResponse():?string
+    public function parseResponse(): ?string
     {
         $result = explode(' ', $this->response);
 
-        if (!isset($result[0])) {
+        if (empty($result[0])) {
             throw new NetgsmException(NetgsmErrors::NETGSM_GENERAL_ERROR);
         }
 
@@ -60,8 +59,8 @@ class NetgsmAvailableCredit extends NetgsmApiClient
      * @throws GuzzleException
      * @throws NetgsmException
      */
-    public function getCredit():?string{
-
+    public function getCredit(): ?string
+    {
         $this->response = $this->callApi('GET', $this->url);
 
         return $this->parseResponse();

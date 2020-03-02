@@ -85,7 +85,7 @@ class NetgsmSmsDetailReport extends AbstractNetgsmReport
      *
      * @param $response
      * @return Collection
-     * @throws Exceptions\ReportException
+     * @throws \TarfinLabs\Netgsm\Exceptions\ReportException
      */
     public function parseResponse(string $response): Collection
     {

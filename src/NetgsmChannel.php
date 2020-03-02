@@ -2,6 +2,7 @@
 
 namespace TarfinLabs\Netgsm;
 
+use Exception;
 use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Notifications\Notification;
 use TarfinLabs\Netgsm\Exceptions\IncorrectPhoneNumberFormatException;
@@ -29,8 +30,8 @@ class NetgsmChannel
     {
         $message = $notification->toNetgsm($notifiable);
 
-        if (! $message instanceof AbstractNetgsmMessage) {
-            throw new \Exception('Geçerli bir Netgsm mesajı değil');
+        if (!$message instanceof AbstractNetgsmMessage) {
+            throw new Exception('Geçerli bir Netgsm mesajı değil');
         }
 
         $phone = $notifiable->routeNotificationFor('Netgsm');

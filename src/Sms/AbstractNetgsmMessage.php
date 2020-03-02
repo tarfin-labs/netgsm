@@ -9,6 +9,7 @@ use Psr\Http\Message\ResponseInterface;
 use TarfinLabs\Netgsm\Exceptions\CouldNotSendNotification;
 use TarfinLabs\Netgsm\Exceptions\IncorrectPhoneNumberFormatException;
 use TarfinLabs\Netgsm\NetgsmApiClient;
+use TarfinLabs\Netgsm\NetgsmErrors;
 
 abstract class AbstractNetgsmMessage extends NetgsmApiClient
 {
