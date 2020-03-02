@@ -62,7 +62,7 @@ class NetgsmSmsDetailReport extends AbstractNetgsmReport
     }
 
     /**
-     * Processes the report line.
+     * Processes and returns a report line.
      *
      * @param $line
      * @return array

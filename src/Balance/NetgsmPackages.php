@@ -14,6 +14,9 @@ class NetgsmPackages extends NetgsmApiClient
      */
     protected $response;
 
+    /**
+     * @var string
+     */
     protected $url = 'balance/list/get';
 
     /**
@@ -26,6 +29,8 @@ class NetgsmPackages extends NetgsmApiClient
     ];
 
     /**
+     * handles the response and return the package list as an array
+     *
      * @return array
      * @throws NetgsmException
      */
@@ -53,6 +58,8 @@ class NetgsmPackages extends NetgsmApiClient
     }
 
     /**
+     * returns the packages list for associated netgsm account
+     *
      * @return array
      * @throws GuzzleException
      * @throws NetgsmException

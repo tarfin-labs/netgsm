@@ -54,7 +54,7 @@ class Netgsm
     }
 
     /**
-     * Get sending status report for messages between given dates.
+     * Get sms status report between given dates.
      *
      * @param  AbstractNetgsmReport  $report
      * @param $startDate
@@ -96,6 +96,8 @@ class Netgsm
     }
 
     /**
+     * Returns the remaining credits amount (TL) on the netgsm account.
+     *
      * @return string
      * @throws Exceptions\NetgsmException
      * @throws GuzzleException
@@ -110,6 +112,8 @@ class Netgsm
     }
 
     /**
+     * Returns the available package list and their balances on the netgsm account.
+     *
      * @return array
      * @throws Exceptions\NetgsmException
      * @throws GuzzleException

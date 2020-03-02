@@ -92,7 +92,7 @@ class NetgsmSmsReport extends AbstractNetgsmReport
     }
 
     /**
-     * formats the fields and adds them according to the api version defined.
+     * Formats the fields and adds them according to the api version defined.
      *
      * @param  string  $line
      * @return array
@@ -115,6 +115,8 @@ class NetgsmSmsReport extends AbstractNetgsmReport
     }
 
     /**
+     * parses the report result from the api response and returns the sms report as a collection.
+     *
      * @param  string  $response
      * @return Collection
      * @throws \TarfinLabs\Netgsm\Exceptions\ReportException

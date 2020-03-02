@@ -2,6 +2,11 @@
 
 namespace TarfinLabs\Netgsm;
 
+/**
+ * Class NetgsmErrors
+ * @package TarfinLabs\Netgsm
+ *
+ */
 class NetgsmErrors
 {
     const MESSAGE_TOO_LONG = 'Mesaj metnindeki bir problemden dolayı gönderilemedi veya standart maksimum mesaj karakter sayısını geçtiniz.';

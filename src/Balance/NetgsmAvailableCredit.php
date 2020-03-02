@@ -21,6 +21,9 @@ class NetgsmAvailableCredit extends NetgsmApiClient
         '00',
     ];
 
+    /**
+     * @var string
+     */
     protected $url = 'balance/list/get';
 
     /**
@@ -33,6 +36,8 @@ class NetgsmAvailableCredit extends NetgsmApiClient
     ];
 
     /**
+     * extracts credit from the returned response
+     *
      * @return string
      * @throws NetgsmException
      */
@@ -55,6 +60,8 @@ class NetgsmAvailableCredit extends NetgsmApiClient
     }
 
     /**
+     * returns the credits amount for associated netgsm account
+     *
      * @throws NetgsmErrors
      * @throws GuzzleException
      * @throws NetgsmException
