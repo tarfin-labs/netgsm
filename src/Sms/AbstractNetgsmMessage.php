@@ -122,14 +122,14 @@ abstract class AbstractNetgsmMessage extends NetgsmApiClient
 
     /**
      * set's the sms recipients
-     * it can be array or string
+     * it can be array or string.
      *
      * @param  string|array|$recipients
      * @return $this
      */
     public function setRecipients($recipients)
     {
-        if (!is_array($recipients)) {
+        if (! is_array($recipients)) {
             $this->recipients = explode(',', $recipients);
         } else {
             $this->recipients = $recipients;
@@ -147,7 +147,7 @@ abstract class AbstractNetgsmMessage extends NetgsmApiClient
     }
 
     /**
-     * set's the sms origin
+     * set's the sms origin.
      * @see https://www.netgsm.com.tr/dokuman/#g%C3%B6nderici-ad%C4%B1-sorgulama
      *
      * @param  null  $header
@@ -169,7 +169,7 @@ abstract class AbstractNetgsmMessage extends NetgsmApiClient
     }
 
     /**
-     * set's the message body
+     * set's the message body.
      *
      * @param  string  $message
      * @return AbstractNetgsmMessage
@@ -199,7 +199,7 @@ abstract class AbstractNetgsmMessage extends NetgsmApiClient
 
     /**
      * set's the sms sending method
-     * allowed send methods are (xml, get)
+     * allowed send methods are (xml, get).
      *
      * @param  string  $sendMethod
      * @return $this
@@ -244,7 +244,7 @@ abstract class AbstractNetgsmMessage extends NetgsmApiClient
     }
 
     /**
-     * validates the sms recipients
+     * validates the sms recipients.
      *
      * @throws IncorrectPhoneNumberFormatException
      */
@@ -261,7 +261,7 @@ abstract class AbstractNetgsmMessage extends NetgsmApiClient
     }
 
     /**
-     * generates the request body for append sms sending endpoint
+     * generates the request body for append sms sending endpoint.
      *
      * @return string
      */
@@ -325,7 +325,7 @@ abstract class AbstractNetgsmMessage extends NetgsmApiClient
             throw new CouldNotSendNotification(NetgsmErrors::NETGSM_GENERAL_ERROR);
         }
 
-        if (!in_array($result[0], self::SUCCESS_CODES)) {
+        if (! in_array($result[0], self::SUCCESS_CODES)) {
             $message = $this->errorCodes[$result[0]];
             throw new CouldNotSendNotification($message);
         }
@@ -337,7 +337,7 @@ abstract class AbstractNetgsmMessage extends NetgsmApiClient
     }
 
     /**
-     * sends a sms via get method
+     * sends a sms via get method.
      *
      * @return $this
      * @throws CouldNotSendNotification
@@ -351,7 +351,7 @@ abstract class AbstractNetgsmMessage extends NetgsmApiClient
     }
 
     /**
-     * sends a sms via xml method
+     * sends a sms via xml method.
      *
      * @return $this
      * @throws CouldNotSendNotification
@@ -367,7 +367,7 @@ abstract class AbstractNetgsmMessage extends NetgsmApiClient
     }
 
     /**
-     * sends a sms via specified sending method
+     * sends a sms via specified sending method.
      *
      * @return $this
      * @throws IncorrectPhoneNumberFormatException
