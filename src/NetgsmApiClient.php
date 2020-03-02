@@ -40,7 +40,7 @@ class NetgsmApiClient
     }
 
     /**
-     * Sends requests to netgsm api endpoints with specified credentials
+     * Sends requests to netgsm api endpoints with specified credentials.
      *
      * @param $method
      * @param $url

@@ -129,7 +129,7 @@ abstract class AbstractNetgsmReport extends NetgsmApiClient
     }
 
     /**
-     * formats the value by specified type
+     * formats the value by specified type.
      *
      * @param $value
      * @param $format
@@ -150,7 +150,7 @@ abstract class AbstractNetgsmReport extends NetgsmApiClient
     }
 
     /**
-     * returns the netgsm basic sms reports as a collection
+     * returns the netgsm basic sms reports as a collection.
      *
      * @return Collection
      * @throws GuzzleException
@@ -187,7 +187,7 @@ abstract class AbstractNetgsmReport extends NetgsmApiClient
     }
 
     /**
-     * validates the response returned from netgsm report api
+     * validates the response returned from netgsm report api.
      *
      * @param $response
      * @return bool

@@ -26,7 +26,7 @@ class NetgsmOtpMessage extends AbstractNetgsmMessage
     ];
 
     /**
-     * creates the xml request body for sms sending via xml post method
+     * creates the xml request body for sms sending via xml post method.
      *
      * @return string
      */
@@ -61,7 +61,7 @@ class NetgsmOtpMessage extends AbstractNetgsmMessage
     }
 
     /**
-     * maps the given parameters according to the required parameters of the otp message endpoint
+     * maps the given parameters according to the required parameters of the otp message endpoint.
      *
      * @return array
      */

@@ -26,7 +26,7 @@ class NetgsmSmsMessage extends AbstractNetgsmMessage
     ];
 
     /**
-     * creates the xml request body for sms sending via xml post method
+     * creates the xml request body for sms sending via xml post method.
      * @return string
      */
     protected function createXmlPost(): string
@@ -55,7 +55,7 @@ class NetgsmSmsMessage extends AbstractNetgsmMessage
     }
 
     /**
-     * maps the given parameters according to the required parameters of the sms message endpoint
+     * maps the given parameters according to the required parameters of the sms message endpoint.
      *
      * @return array
      */
@@ -65,8 +65,8 @@ class NetgsmSmsMessage extends AbstractNetgsmMessage
             'gsmno'     => implode(',', $this->recipients),
             'msgheader' => $this->header ?? $this->defaults['header'],
             'message'   => $this->message,
-            'startdate' => !empty($this->startDate) ? $this->startDate->format('dmYHi') : null,
-            'stopdate'  => !empty($this->endDate) ? $this->endDate->format('dmYHi') : null,
+            'startdate' => ! empty($this->startDate) ? $this->startDate->format('dmYHi') : null,
+            'stopdate'  => ! empty($this->endDate) ? $this->endDate->format('dmYHi') : null,
             'izin'      => (int) $this->isAuthorizedData(),
         ];
     }

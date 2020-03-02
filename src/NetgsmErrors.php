@@ -3,9 +3,7 @@
 namespace TarfinLabs\Netgsm;
 
 /**
- * Class NetgsmErrors
- * @package TarfinLabs\Netgsm
- *
+ * Class NetgsmErrors.
  */
 class NetgsmErrors
 {
