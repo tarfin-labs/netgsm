@@ -19,9 +19,9 @@ Also, this package provides simple reporting.
        - [Available SMS Interfaces](#available-sms-interfaces)
    - [Reporting](#reporting)
        - [Available Reporting Interfaces](#available-report-interfaces)
-   - [Account Balance](#balance)
+   - [Account Balance](#account-balance)
         - [Remaining Balance](#remaining-balance)
-        - [Available Package Credits](#available-package-credits)
+        - [Remaining Package Credits](#remaining-package-credits)
 - [Testing](#testing)
 - [Security](#security)
 - [Contributing](#contributing)
@@ -232,7 +232,7 @@ Report Results
 
 With this service, you can inquire the remaining balance of your netgsm account and the credit balances of your packages.
 
-#### Remaining Balance (TL)
+#### Remaining Balance
 
 Returns the remaining money balance on netgsm account. (TL)
 
