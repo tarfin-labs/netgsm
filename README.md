@@ -239,7 +239,7 @@ Returns the remaining money balance on netgsm account. (TL)
 Usage:
 
 ```php
-Netgsm::getAvailableCredit();
+Netgsm::getCredit();
 ```
 
 Output: 
