@@ -19,6 +19,9 @@ Also, this package provides simple reporting.
        - [Available SMS Interfaces](#available-sms-interfaces)
    - [Reporting](#reporting)
        - [Available Reporting Interfaces](#available-report-interfaces)
+   - [Account Balance](#account-balance)
+        - [Remaining Balance](#remaining-balance)
+        - [Remaining Package Credits](#remaining-package-credits)
 - [Testing](#testing)
 - [Security](#security)
 - [Contributing](#contributing)
@@ -224,6 +227,73 @@ Report Results
 | header | All | No | Yes
 | total | All | No | Yes
 
+
+### Account Balance
+
+With this service, you can inquire the remaining balance of your netgsm account and the credit balances of your packages.
+
+#### Remaining Balance
+
+Returns the remaining money balance on netgsm account. (TL)
+
+Usage:
+
+```php
+Netgsm::getCredit();
+```
+
+Output: 
+
+```php
+2,7
+```
+
+#### Remaining Package Credits
+
+Returns the credit balances of the packages defined in the relevant netgsm account.
+
+Usage:
+
+```php
+Netgsm::getAvailablePackages();
+```
+
+Output: 
+
+```php
+class Illuminate\Support\Collection#105 (1) {
+  protected $items =>
+  array(3) {
+    [0] =>
+    array(3) {
+      'amount' =>
+      int(1000)
+      'amountType' =>
+      string(14) "Adet Flash Sms"
+      'packageType' =>
+      string(0) ""
+    }
+    [1] =>
+    array(3) {
+      'amount' =>
+      int(953)
+      'amountType' =>
+      string(12) "Adet OTP Sms"
+      'packageType' =>
+      string(0) ""
+    }
+    [2] =>
+    array(3) {
+      'amount' =>
+      int(643)
+      'amountType' =>
+      string(4) "Adet"
+      'packageType' =>
+      string(3) "SMS"
+    }
+  }
+}
+```
 
 ### Testing
 

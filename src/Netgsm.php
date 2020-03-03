@@ -4,8 +4,13 @@ namespace TarfinLabs\Netgsm;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
+use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Support\Collection;
+use TarfinLabs\Netgsm\Balance\NetgsmAvailableCredit;
+use TarfinLabs\Netgsm\Balance\NetgsmPackages;
 use TarfinLabs\Netgsm\Exceptions\CouldNotSendNotification;
+use TarfinLabs\Netgsm\Report\AbstractNetgsmReport;
+use TarfinLabs\Netgsm\Sms\AbstractNetgsmMessage;
 
 class Netgsm
 {
@@ -31,7 +36,7 @@ class Netgsm
      * @return mixed
      * @throws CouldNotSendNotification
      * @throws Exceptions\IncorrectPhoneNumberFormatException
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      */
     public function sendSms(AbstractNetgsmMessage $netgsmMessage)
     {
@@ -49,14 +54,14 @@ class Netgsm
     }
 
     /**
-     * Get sending status report for messages between given dates.
+     * Get sms status report between given dates.
      *
      * @param  AbstractNetgsmReport  $report
      * @param $startDate
      * @param $endDate
      * @param  array  $filters
      * @return Collection
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      * @throws Exceptions\ReportException
      */
     public function getReports(
@@ -88,5 +93,37 @@ class Netgsm
         }
 
         return $report->getReports();
+    }
+
+    /**
+     * Returns the remaining credits amount (TL) on the netgsm account.
+     *
+     * @return string
+     * @throws Exceptions\NetgsmException
+     * @throws GuzzleException
+     */
+    public function getCredit()
+    {
+        $creditService = new NetgsmAvailableCredit();
+        $creditService->setClient($this->client);
+        $creditService->setCredentials($this->credentials);
+
+        return $creditService->getCredit();
+    }
+
+    /**
+     * Returns the available package list and their balances on the netgsm account.
+     *
+     * @return array
+     * @throws Exceptions\NetgsmException
+     * @throws GuzzleException
+     */
+    public function getAvailablePackages(): Collection
+    {
+        $packageService = new NetgsmPackages();
+        $packageService->setClient($this->client);
+        $packageService->setCredentials($this->credentials);
+
+        return collect($packageService->getPackages());
     }
 }

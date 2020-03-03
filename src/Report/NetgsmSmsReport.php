@@ -1,12 +1,12 @@
 <?php
 
-namespace TarfinLabs\Netgsm;
+namespace TarfinLabs\Netgsm\Report;
 
 use Illuminate\Support\Collection;
 
 class NetgsmSmsReport extends AbstractNetgsmReport
 {
-    protected $url = 'https://api.netgsm.com.tr/sms/report';
+    protected $url = 'sms/report';
 
     /**
      * @var array
@@ -92,7 +92,7 @@ class NetgsmSmsReport extends AbstractNetgsmReport
     }
 
     /**
-     * formats the fields and adds them according to the api version defined.
+     * Formats the fields and adds them according to the api version defined.
      *
      * @param  string  $line
      * @return array
@@ -115,11 +115,11 @@ class NetgsmSmsReport extends AbstractNetgsmReport
     }
 
     /**
-     * Parses the string response (separated by newline and whitespaces!) returned from the Netgsm API service.
+     * parses the report result from the api response and returns the sms report as a collection.
      *
      * @param  string  $response
      * @return Collection
-     * @throws Exceptions\ReportException
+     * @throws \TarfinLabs\Netgsm\Exceptions\ReportException
      */
     public function parseResponse(string $response): Collection
     {

@@ -1,13 +1,14 @@
 <?php
 
-namespace TarfinLabs\Netgsm;
+namespace TarfinLabs\Netgsm\Report;
 
-use GuzzleHttp\ClientInterface;
+use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use TarfinLabs\Netgsm\Exceptions\ReportException;
+use TarfinLabs\Netgsm\NetgsmApiClient;
 
-abstract class AbstractNetgsmReport
+abstract class AbstractNetgsmReport extends NetgsmApiClient
 {
     /**
      * @var array
@@ -27,11 +28,6 @@ abstract class AbstractNetgsmReport
     /**
      * @var array
      */
-    protected $credentials = [];
-
-    /**
-     * @var array
-     */
     protected $columns = [];
 
     /**
@@ -39,10 +35,6 @@ abstract class AbstractNetgsmReport
      */
     protected $columnMap = [];
 
-    /**
-     * @var ClientInterface
-     */
-    protected $client;
     /**
      * @var string endpoint url
      */
@@ -58,28 +50,6 @@ abstract class AbstractNetgsmReport
      * @return Collection
      */
     abstract protected function parseResponse(string $response): Collection;
-
-    /**
-     * @param  array  $credentials
-     * @return AbstractNetgsmReport
-     */
-    public function setCredentials(array $credentials): self
-    {
-        $this->credentials = $credentials;
-
-        return $this;
-    }
-
-    /**
-     * @param  ClientInterface  $client
-     * @return AbstractNetgsmReport
-     */
-    public function setClient(ClientInterface $client): self
-    {
-        $this->client = $client;
-
-        return $this;
-    }
 
     /**
      * @param  string  $type
@@ -159,6 +129,8 @@ abstract class AbstractNetgsmReport
     }
 
     /**
+     * formats the value by specified type.
+     *
      * @param $value
      * @param $format
      * @return int|string
@@ -178,15 +150,15 @@ abstract class AbstractNetgsmReport
     }
 
     /**
+     * returns the netgsm basic sms reports as a collection.
+     *
      * @return Collection
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      * @throws ReportException
      */
     public function getReports(): Collection
     {
         $data = [
-            'usercode' => $this->credentials['user_code'],
-            'password' => $this->credentials['secret'],
             'page'     => 1,
         ];
 
@@ -194,11 +166,7 @@ abstract class AbstractNetgsmReport
         $keep = true;
         $allResults = new Collection();
         do {
-            $queryStr = http_build_query($data);
-
-            $rawResponse = $this->client->request('GET', $this->url.'?'.$queryStr)
-                ->getBody()
-                ->getContents();
+            $rawResponse = $this->callApi('GET', $this->url, $data);
 
             if ($this->paginated) {
                 if (in_array($rawResponse, $this->noResultCodes)) {
@@ -219,6 +187,8 @@ abstract class AbstractNetgsmReport
     }
 
     /**
+     * validates the response returned from netgsm report api.
+     *
      * @param $response
      * @return bool
      * @throws ReportException

@@ -3,6 +3,12 @@
 All notable changes to `netgsm` will be documented in this file
 
 
+## 2.0.0 - 2020-03-02
+
+- namespaces and folder structure changed
+- available credit and packages service added
+- tests updated
+
 ## 1.0.1 - 2020-02-17
 
 - default sms sending method changed to get
@@ -10,4 +16,3 @@ All notable changes to `netgsm` will be documented in this file
 ## 1.0.0 - 2020-02-17
 
 - initial release
-

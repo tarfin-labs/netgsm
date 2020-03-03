@@ -1,15 +1,17 @@
 <?php
 
-namespace TarfinLabs\Netgsm;
+namespace TarfinLabs\Netgsm\Sms;
 
 use Exception;
-use GuzzleHttp\ClientInterface;
+use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Support\Carbon;
 use Psr\Http\Message\ResponseInterface;
 use TarfinLabs\Netgsm\Exceptions\CouldNotSendNotification;
 use TarfinLabs\Netgsm\Exceptions\IncorrectPhoneNumberFormatException;
+use TarfinLabs\Netgsm\NetgsmApiClient;
+use TarfinLabs\Netgsm\NetgsmErrors;
 
-abstract class AbstractNetgsmMessage
+abstract class AbstractNetgsmMessage extends NetgsmApiClient
 {
     private const SUCCESS_CODES = [
         '00', '01', '02',
@@ -56,18 +58,7 @@ abstract class AbstractNetgsmMessage
      * @var array
      */
     protected $defaults = [];
-    /**
-     * @var array
-     */
-    protected $credentials = [];
-    /**
-     * @var ClientInterface
-     */
-    protected $client;
-    /**
-     * @var string endpoint url
-     */
-    protected $url;
+
     /**
      * @var string message
      */
@@ -124,9 +115,15 @@ abstract class AbstractNetgsmMessage
      */
     abstract protected function mappers(): array;
 
+    /**
+     * @return string
+     */
     abstract protected function createXmlPost(): string;
 
     /**
+     * set's the sms recipients
+     * it can be array or string.
+     *
      * @param  string|array|$recipients
      * @return $this
      */
@@ -150,6 +147,9 @@ abstract class AbstractNetgsmMessage
     }
 
     /**
+     * set's the sms origin.
+     * @see https://www.netgsm.com.tr/dokuman/#g%C3%B6nderici-ad%C4%B1-sorgulama
+     *
      * @param  null  $header
      * @return AbstractNetgsmMessage
      */
@@ -169,6 +169,8 @@ abstract class AbstractNetgsmMessage
     }
 
     /**
+     * set's the message body.
+     *
      * @param  string  $message
      * @return AbstractNetgsmMessage
      */
@@ -196,6 +198,9 @@ abstract class AbstractNetgsmMessage
     }
 
     /**
+     * set's the sms sending method
+     * allowed send methods are (xml, get).
+     *
      * @param  string  $sendMethod
      * @return $this
      * @throws Exception
@@ -239,6 +244,8 @@ abstract class AbstractNetgsmMessage
     }
 
     /**
+     * validates the sms recipients.
+     *
      * @throws IncorrectPhoneNumberFormatException
      */
     protected function validateRecipients(): void
@@ -254,22 +261,13 @@ abstract class AbstractNetgsmMessage
     }
 
     /**
+     * generates the request body for append sms sending endpoint.
+     *
      * @return string
      */
     public function body(): array
     {
         return array_merge(array_flip($this->fields), array_filter($this->mappers()));
-    }
-
-    /**
-     * @param  mixed  $client
-     * @return AbstractNetgsmMessage
-     */
-    public function setClient(ClientInterface $client): self
-    {
-        $this->client = $client;
-
-        return $this;
     }
 
     /**
@@ -279,17 +277,6 @@ abstract class AbstractNetgsmMessage
     public function setDefaults(array $defaults): self
     {
         $this->defaults = $defaults;
-
-        return $this;
-    }
-
-    /**
-     * @param  array  $credentials
-     * @return AbstractNetgsmMessage
-     */
-    public function setCredentials(array $credentials): self
-    {
-        $this->credentials = $credentials;
 
         return $this;
     }
@@ -317,14 +304,6 @@ abstract class AbstractNetgsmMessage
     }
 
     /**
-     * @return string
-     */
-    protected function getResponseContent(): string
-    {
-        return $this->response->getBody()->getContents();
-    }
-
-    /**
      * @return mixed
      */
     public function getJobId(): string
@@ -333,15 +312,17 @@ abstract class AbstractNetgsmMessage
     }
 
     /**
+     * parses the response from api and returns job id.
+     *
      * @return $this
      * @throws CouldNotSendNotification
      */
     public function parseResponse(): self
     {
-        $result = explode(' ', $this->getResponseContent());
+        $result = explode(' ', $this->response);
 
         if (! isset($result[0])) {
-            throw new CouldNotSendNotification(CouldNotSendNotification::NETGSM_GENERAL_ERROR);
+            throw new CouldNotSendNotification(NetgsmErrors::NETGSM_GENERAL_ERROR);
         }
 
         if (! in_array($result[0], self::SUCCESS_CODES)) {
@@ -356,44 +337,40 @@ abstract class AbstractNetgsmMessage
     }
 
     /**
+     * sends a sms via get method.
+     *
      * @return $this
      * @throws CouldNotSendNotification
-     * @throws IncorrectPhoneNumberFormatException
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      */
     protected function sendViaGet(): self
     {
-        $query = http_build_query($this->body());
-
-        $this->response = $this->client->request('GET', $this->getUrl().'?'.$query);
+        $this->response = $this->callApi('GET', $this->getUrl(), $this->body());
 
         return $this->parseResponse();
     }
 
     /**
+     * sends a sms via xml method.
+     *
      * @return $this
      * @throws CouldNotSendNotification
-     * @throws \GuzzleHttp\Exception\GuzzleException
+     * @throws GuzzleException
      */
     protected function sendViaXml(): self
     {
-        $options = [
-            'headers' => [
-                'Content-Type' => 'text/xml; charset=UTF8',
-            ],
-            'body'    => $this->createXmlPost(),
-        ];
-
-        $this->response = $this->client->request('POST', $this->getUrl(), $options);
+        $this->response = $this->callApi('POST', $this->getUrl(), $this->createXmlPost(), [
+            'Content-Type' => 'text/xml; charset=UTF8',
+        ]);
 
         return $this->parseResponse();
     }
 
     /**
+     * sends a sms via specified sending method.
+     *
      * @return $this
-     * @throws CouldNotSendNotification
      * @throws IncorrectPhoneNumberFormatException
-     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function send()
     {
