@@ -39,7 +39,7 @@ class NetgsmPackages extends NetgsmApiClient
         $availablePackages = [];
 
         if (array_key_exists($this->response, $this->errorCodes)) {
-            $message = $this->errorCodes[$this->response];
+            $message = $this->errorCodes[$this->response] ?? NetgsmErrors::SYSTEM_ERROR;
             throw new NetgsmException($message, $this->response);
         }
 

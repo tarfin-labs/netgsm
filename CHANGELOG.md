@@ -3,6 +3,10 @@
 All notable changes to `netgsm` will be documented in this file
 
 ## Unreleased
+
+## 2.1.0 - 2020-03-04
+
+- added an exception for unhandled netgsm error codes.
 - Laravel 7 support added.
 
 ## 2.0.0 - 2020-03-02

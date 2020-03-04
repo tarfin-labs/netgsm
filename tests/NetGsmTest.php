@@ -7,6 +7,7 @@ use GuzzleHttp\Psr7\Response;
 use Mockery;
 use TarfinLabs\Netgsm\Exceptions\CouldNotSendNotification;
 use TarfinLabs\Netgsm\Exceptions\IncorrectPhoneNumberFormatException;
+use TarfinLabs\Netgsm\Exceptions\NetgsmException;
 use TarfinLabs\Netgsm\Netgsm;
 use TarfinLabs\Netgsm\Sms\NetgsmSmsMessage;
 
@@ -83,7 +84,24 @@ class NetGsmTest extends BaseTestCase
             ->andReturn(new Response(
                 $status = 200,
                 $headers = [],
-                $this->faker->randomElement(['20', '30', '40', '70'])
+                $this->faker->randomElement(['20', '30', '40', '70', '52'])
+            ));
+
+        $this->netgsm->sendSms($this->newSmsMessage());
+    }
+
+    /**
+     * @test
+     */
+    public function should_throw_exception_when_is_no_job_id_in_response()
+    {
+        $this->expectException(NetgsmException::class);
+
+        $this->httpClient->shouldReceive('request')
+            ->andReturn(new Response(
+                $status = 200,
+                $headers = [],
+                $this->faker->randomElement(['00','01','02'])
             ));
 
         $this->netgsm->sendSms($this->newSmsMessage());
