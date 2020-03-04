@@ -19,4 +19,5 @@ class NetgsmErrors
     const SYSTEM_ERROR = 'Sistem hatası.';
     const NETGSM_GENERAL_ERROR = 'Netgsm responded with an error :';
     const NO_RECORD = 'No records';
+    const JOB_ID_NOT_FOUND = 'Job id not found';
 }

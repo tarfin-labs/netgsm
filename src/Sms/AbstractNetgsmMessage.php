@@ -8,6 +8,7 @@ use Illuminate\Support\Carbon;
 use Psr\Http\Message\ResponseInterface;
 use TarfinLabs\Netgsm\Exceptions\CouldNotSendNotification;
 use TarfinLabs\Netgsm\Exceptions\IncorrectPhoneNumberFormatException;
+use TarfinLabs\Netgsm\Exceptions\NetgsmException;
 use TarfinLabs\Netgsm\NetgsmApiClient;
 use TarfinLabs\Netgsm\NetgsmErrors;
 
@@ -316,6 +317,7 @@ abstract class AbstractNetgsmMessage extends NetgsmApiClient
      *
      * @return $this
      * @throws CouldNotSendNotification
+     * @throws NetgsmException
      */
     public function parseResponse(): self
     {
@@ -325,12 +327,17 @@ abstract class AbstractNetgsmMessage extends NetgsmApiClient
             throw new CouldNotSendNotification(NetgsmErrors::NETGSM_GENERAL_ERROR);
         }
 
-        if (! in_array($result[0], self::SUCCESS_CODES)) {
-            $message = $this->errorCodes[$result[0]];
+        $code = $result[0];
+        if (! in_array($code, self::SUCCESS_CODES)) {
+            $message = $this->errorCodes[$code] ?? NetgsmErrors::SYSTEM_ERROR;
             throw new CouldNotSendNotification($message);
         }
 
-        $this->code = $result[0];
+        if (! isset($result[1])) {
+            throw new NetgsmException(NetgsmErrors::JOB_ID_NOT_FOUND);
+        }
+
+        $this->code = $code;
         $this->jobId = $result[1];
 
         return $this;
@@ -342,6 +349,7 @@ abstract class AbstractNetgsmMessage extends NetgsmApiClient
      * @return $this
      * @throws CouldNotSendNotification
      * @throws GuzzleException
+     * @throws NetgsmException
      */
     protected function sendViaGet(): self
     {
@@ -356,6 +364,7 @@ abstract class AbstractNetgsmMessage extends NetgsmApiClient
      * @return $this
      * @throws CouldNotSendNotification
      * @throws GuzzleException
+     * @throws NetgsmException
      */
     protected function sendViaXml(): self
     {
