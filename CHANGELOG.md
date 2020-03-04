@@ -2,6 +2,8 @@
 
 All notable changes to `netgsm` will be documented in this file
 
+## Unreleased
+- Laravel 7 support added.
 
 ## 2.0.0 - 2020-03-02
 
