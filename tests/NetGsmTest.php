@@ -101,7 +101,7 @@ class NetGsmTest extends BaseTestCase
             ->andReturn(new Response(
                 $status = 200,
                 $headers = [],
-                $this->faker->randomElement(['00','01','02'])
+                $this->faker->randomElement(['00', '01', '02'])
             ));
 
         $this->netgsm->sendSms($this->newSmsMessage());

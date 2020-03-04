@@ -323,17 +323,17 @@ abstract class AbstractNetgsmMessage extends NetgsmApiClient
     {
         $result = explode(' ', $this->response);
 
-        if (!isset($result[0])) {
+        if (! isset($result[0])) {
             throw new CouldNotSendNotification(NetgsmErrors::NETGSM_GENERAL_ERROR);
         }
 
         $code = $result[0];
-        if (!in_array($code, self::SUCCESS_CODES)) {
+        if (! in_array($code, self::SUCCESS_CODES)) {
             $message = $this->errorCodes[$code] ?? NetgsmErrors::SYSTEM_ERROR;
             throw new CouldNotSendNotification($message);
         }
 
-        if (!isset($result[1])){
+        if (! isset($result[1])) {
             throw new NetgsmException(NetgsmErrors::JOB_ID_NOT_FOUND);
         }
 

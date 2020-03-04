@@ -51,7 +51,7 @@ class NetgsmAvailableCredit extends NetgsmApiClient
 
         $code = $result[0];
 
-        if (!in_array($code, $this->successCodes)) {
+        if (! in_array($code, $this->successCodes)) {
             $message = $this->errorCodes[$code] ?? NetgsmErrors::SYSTEM_ERROR;
             throw new NetgsmException($message, $code);
         }
