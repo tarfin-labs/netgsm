@@ -4,6 +4,11 @@ All notable changes to `netgsm` will be documented in this file
 
 ## Unreleased
 
+## 2.1.1 - 2020-03-05
+
+- "vendor:publish" section in the documentation has been fixed.
+- error code descriptions fixed for balance service
+
 ## 2.1.0 - 2020-03-04
 
 - added an exception for unhandled netgsm error codes.
