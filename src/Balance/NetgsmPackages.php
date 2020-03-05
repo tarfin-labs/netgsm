@@ -23,8 +23,8 @@ class NetgsmPackages extends NetgsmApiClient
      * @var array
      */
     protected $errorCodes = [
-        '30'  => NetgsmErrors::MESSAGE_TOO_LONG,
-        '40'  => NetgsmErrors::CREDENTIALS_INCORRECT,
+        '30'  => NetgsmErrors::CREDENTIALS_INCORRECT,
+        '40'  => NetgsmErrors::NO_RECORD,
         '100' => NetgsmErrors::SYSTEM_ERROR,
     ];
 
