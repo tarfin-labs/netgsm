@@ -20,8 +20,8 @@ class NetgsmChannel
     /**
      * Send the given notification.
      *
-     * @param $notifiable
-     * @param  Notification  $notification
+     * @param              $notifiable
+     * @param Notification $notification
      * @throws Exceptions\CouldNotSendNotification
      * @throws GuzzleException
      * @throws IncorrectPhoneNumberFormatException
@@ -34,9 +34,10 @@ class NetgsmChannel
             throw new Exception('Geçerli bir Netgsm mesajı değil');
         }
 
-        $phone = $notifiable->routeNotificationFor('Netgsm');
-
-        $message->setRecipients($phone);
+        if (! $message->getRecipients()) {
+            $phone = $notifiable->routeNotificationFor('Netgsm');
+            $message->setRecipients($phone);
+        }
 
         $this->netgsm->sendSms($message);
     }
