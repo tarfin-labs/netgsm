@@ -32,7 +32,7 @@ class NetgsmChannel
         $message = $notification->toNetgsm($notifiable);
 
         if (! $message instanceof AbstractNetgsmMessage) {
-            throw new Exception(\Lang::get('netgsm::errors.invalid_netgsm_message'));
+            throw new Exception(trans('netgsm::errors.invalid_netgsm_message'));
         }
 
         if (! $message->getRecipients()) {
