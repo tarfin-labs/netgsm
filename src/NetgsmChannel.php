@@ -7,7 +7,6 @@ use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Notifications\Notification;
 use TarfinLabs\Netgsm\Exceptions\IncorrectPhoneNumberFormatException;
 use TarfinLabs\Netgsm\Sms\AbstractNetgsmMessage;
-use TarfinLabs\Netgsm\Sms\NetgsmSmsMessage;
 
 class NetgsmChannel
 {
