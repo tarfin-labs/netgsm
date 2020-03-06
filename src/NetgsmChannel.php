@@ -7,6 +7,7 @@ use GuzzleHttp\Exception\GuzzleException;
 use Illuminate\Notifications\Notification;
 use TarfinLabs\Netgsm\Exceptions\IncorrectPhoneNumberFormatException;
 use TarfinLabs\Netgsm\Sms\AbstractNetgsmMessage;
+use TarfinLabs\Netgsm\Sms\NetgsmSmsMessage;
 
 class NetgsmChannel
 {
@@ -20,8 +21,8 @@ class NetgsmChannel
     /**
      * Send the given notification.
      *
-     * @param $notifiable
-     * @param  Notification  $notification
+     * @param              $notifiable
+     * @param Notification $notification
      * @throws Exceptions\CouldNotSendNotification
      * @throws GuzzleException
      * @throws IncorrectPhoneNumberFormatException
@@ -30,13 +31,18 @@ class NetgsmChannel
     {
         $message = $notification->toNetgsm($notifiable);
 
-        if (! $message instanceof AbstractNetgsmMessage) {
+        if (is_string($message)) {
+            $message = new NetgsmSmsMessage($message);
+        }
+
+        if (!$message instanceof AbstractNetgsmMessage) {
             throw new Exception('Geçerli bir Netgsm mesajı değil');
         }
 
-        $phone = $notifiable->routeNotificationFor('Netgsm');
-
-        $message->setRecipients($phone);
+        if (!$message->getRecipients()) {
+            $phone = $notifiable->routeNotificationFor('Netgsm');
+            $message->setRecipients($phone);
+        }
 
         $this->netgsm->sendSms($message);
     }
