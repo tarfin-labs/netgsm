@@ -7,17 +7,17 @@ namespace TarfinLabs\Netgsm;
  */
 class NetgsmErrors
 {
-    const MESSAGE_TOO_LONG = 'Mesaj metnindeki bir problemden dolayı gönderilemedi veya standart maksimum mesaj karakter sayısını geçtiniz.';
-    const START_DATE_INCORRECT = 'Mesaj gönderim baslangıç tarihinde hata var. Sistem tarihi ile değiştirilip işleme alındı.';
-    const END_DATE_INCORRECT = 'Mesaj gönderim sonlandırılma tarihinde hata var. Sistem tarihi ile değiştirilip işleme alındı.Bitiş tarihi başlangıç tarihinden küçük girilmiş ise, sistem bitiş tarihine içinde bulunduğu tarihe 24 saat ekler.';
-    const SENDER_INCORRECT = 'Mesaj başlığınız (gönderici adınızın) sistemde tanımlı değil.';
-    const CREDENTIALS_INCORRECT = 'Geçersiz kullanıcı adı, şifre veya kullanıcınızın API erişim izni yok.';
-    const PARAMETERS_INCORRECT = 'Hatalı sorgulama. Gönderdiğiniz parametrelerden birisi hatalı veya zorunlu alanlardan biri eksik.';
-    const RECEIVER_INCORRECT = 'Gönderilen numara hatalı.';
-    const OTP_ACCOUNT_NOT_DEFINED = 'Hesabınızda OTP SMS Paketi tanımlı değildir.';
-    const QUERY_LIMIT_EXCEED = 'Hesabınızda OTP SMS Paketi tanımlı değildir.';
-    const SYSTEM_ERROR = 'Sistem hatası.';
-    const NETGSM_GENERAL_ERROR = 'Netgsm responded with an error :';
-    const NO_RECORD = 'No records';
-    const JOB_ID_NOT_FOUND = 'Job id not found';
+    const MESSAGE_TOO_LONG = 'netgsm::errors.message_too_long';
+    const START_DATE_INCORRECT = 'netgsm::errors.start_date_incorrect';
+    const END_DATE_INCORRECT = 'netgsm::errors.end_date_incorrect';
+    const SENDER_INCORRECT = 'netgsm::errors.sender_incorrect';
+    const CREDENTIALS_INCORRECT = 'netgsm::errors.credentials_incorrect';
+    const PARAMETERS_INCORRECT = 'netgsm::errors.parameters_incorrect';
+    const RECEIVER_INCORRECT = 'netgsm::errors.receiver_incorrect';
+    const OTP_ACCOUNT_NOT_DEFINED = 'netgsm::errors.otp_account_not_defined';
+    const QUERY_LIMIT_EXCEED = 'netgsm::errors.query_limit_exceed';
+    const SYSTEM_ERROR = 'netgsm::errors.system_error';
+    const NETGSM_GENERAL_ERROR = 'netgsm::errors.netgsm_general_error';
+    const NO_RECORD = 'netgsm::errors.no_record';
+    const JOB_ID_NOT_FOUND = 'netgsm::errors.job_id_not_found';
 }

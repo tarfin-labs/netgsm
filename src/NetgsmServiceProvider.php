@@ -13,7 +13,13 @@ class NetgsmServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->loadTranslationsFrom(dirname(__DIR__).'/resources/lang', 'netgsm');
+
         if ($this->app->runningInConsole()) {
+            $this->publishes([
+                dirname(__DIR__).'/resources/lang' => resource_path('lang/vendor/netgsm'),
+            ]);
+
             $this->publishes([
                 __DIR__.'/../config/config.php' => config_path('netgsm.php'),
             ], 'config');

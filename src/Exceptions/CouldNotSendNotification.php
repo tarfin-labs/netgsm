@@ -2,15 +2,14 @@
 
 namespace TarfinLabs\Netgsm\Exceptions;
 
-use Exception;
 use GuzzleHttp\Exception\ClientException;
 
-class CouldNotSendNotification extends Exception
+class CouldNotSendNotification extends AbstractNetgsmException
 {
     /**
      * Thrown when there's a bad request and an error is responded.
      *
-     * @param  ClientException  $exception
+     * @param ClientException $exception
      *
      * @return static
      */

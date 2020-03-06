@@ -2,8 +2,6 @@
 
 namespace TarfinLabs\Netgsm\Exceptions;
 
-use Exception;
-
-class NetgsmException extends Exception
+class NetgsmException extends AbstractNetgsmException
 {
 }

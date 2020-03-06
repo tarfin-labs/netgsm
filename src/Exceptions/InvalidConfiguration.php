@@ -2,9 +2,7 @@
 
 namespace TarfinLabs\Netgsm\Exceptions;
 
-use Exception;
-
-class InvalidConfiguration extends Exception
+class InvalidConfiguration extends AbstractNetgsmException
 {
     /**
      * @return static
