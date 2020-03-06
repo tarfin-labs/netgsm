@@ -15,7 +15,7 @@ class CouldNotSendNotification extends AbstractNetgsmException
      */
     public static function NetgsmRespondedWithAnError(ClientException $exception)
     {
-        $statusCode  = $exception->getResponse()->getStatusCode();
+        $statusCode = $exception->getResponse()->getStatusCode();
         $description = 'no description given';
         if ($result = json_decode($exception->getResponse()->getBody())) {
             $description = $result->description ?: $description;
