@@ -35,11 +35,11 @@ class NetgsmChannel
             $message = new NetgsmSmsMessage($message);
         }
 
-        if (!$message instanceof AbstractNetgsmMessage) {
+        if (! $message instanceof AbstractNetgsmMessage) {
             throw new Exception('Geçerli bir Netgsm mesajı değil');
         }
 
-        if (!$message->getRecipients()) {
+        if (! $message->getRecipients()) {
             $phone = $notifiable->routeNotificationFor('Netgsm');
             $message->setRecipients($phone);
         }
