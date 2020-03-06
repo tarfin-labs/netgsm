@@ -39,7 +39,7 @@ composer require tarfin-labs/netgsm
 Next, you should publish the Laravel config migration file using the vendor:publish Artisan command.
 
 ```
-php artisan vendor:publish --provider="TarfinLabs\Netgsm\NetgsmServiceProvider" --tag="config"
+php artisan vendor:publish --provider="TarfinLabs\Netgsm\NetgsmServiceProvider"
 ```
 
 ### Setting up the Netgsm service
