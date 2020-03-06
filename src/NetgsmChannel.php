@@ -25,13 +25,14 @@ class NetgsmChannel
      * @throws Exceptions\CouldNotSendNotification
      * @throws GuzzleException
      * @throws IncorrectPhoneNumberFormatException
+     * @throws Exception
      */
     public function send($notifiable, Notification $notification)
     {
         $message = $notification->toNetgsm($notifiable);
 
         if (! $message instanceof AbstractNetgsmMessage) {
-            throw new Exception('Geçerli bir Netgsm mesajı değil');
+            throw new Exception(\Lang::get('netgsm::errors.invalid_netgsm_message'));
         }
 
         if (! $message->getRecipients()) {

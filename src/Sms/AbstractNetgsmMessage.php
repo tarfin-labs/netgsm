@@ -209,7 +209,7 @@ abstract class AbstractNetgsmMessage extends NetgsmApiClient
     public function setSendMethod(string $sendMethod): self
     {
         if (! in_array($sendMethod, $this->sendMethods)) {
-            throw new Exception($sendMethod.' method is not allowed');
+            throw new Exception(\Lang::get('method_not_allowed',['method' => $sendMethod]));
         }
 
         $this->sendMethod = $sendMethod;
