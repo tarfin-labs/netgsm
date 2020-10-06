@@ -4,11 +4,6 @@ All notable changes to `netgsm` will be documented in this file
 
 ## Unreleased
 
-
-## [3.0.0] - 2020-10-06
-
-- 2020-10-06: Laravel netgsm now compatible with Laravel 8.
-
 ## 2.1.1 - 2020-03-05
 
 - "vendor:publish" section in the documentation has been fixed.
