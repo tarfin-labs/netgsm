@@ -4,6 +4,7 @@ return [
     'credentials' => [
         'user_code' => env('NETGSM_USERCODE'),
         'secret'    => env('NETGSM_SECRET'),
+        'brand_code'=> env('NETGSM_BRANDCODE'),
     ],
     'defaults'    => [
         'language'           => env('NETGSM_LANGUAGE', 'tr'),
