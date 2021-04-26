@@ -81,10 +81,10 @@ class Search
     public function body(): array
     {
         return [
-            'type'              => $this->type,
-            'recipient'         => $this->recipient,
-            'recipientType'     => $this->recipientType,
-            'refid'             => $this->refId,
+            'type'              => $this->type ?? null,
+            'recipient'         => $this->recipient ?? null,
+            'recipientType'     => $this->recipientType ?? null,
+            'refid'             => $this->refId ?? null,
         ];
     }
 

@@ -20,9 +20,9 @@ class Add
 
     protected string $recipientType;
 
-    protected ?int $retailerCode = null;
+    protected ?int $retailerCode;
 
-    protected ?int $retailerAccess = null;
+    protected ?int $retailerAccess;
 
     /**
      * @param string $refId
@@ -102,10 +102,10 @@ class Add
     }
 
     /**
-     * @param int $retailerCode
+     * @param int|null $retailerCode
      * @return $this
      */
-    public function setRetailerCode(int $retailerCode): self
+    public function setRetailerCode(?int $retailerCode): self
     {
         $this->retailerCode = $retailerCode;
 
@@ -113,10 +113,10 @@ class Add
     }
 
     /**
-     * @param int $retailerAccess
+     * @param int|null $retailerAccess
      * @return $this
      */
-    public function setRetailerAccess(int $retailerAccess): self
+    public function setRetailerAccess(?int $retailerAccess): self
     {
         $this->retailerAccess = $retailerAccess;
 
@@ -146,15 +146,15 @@ class Add
     public function body(): array
     {
         return [
-            'refid'             => $this->refId,
-            'type'              => $this->type,
-            'source'            => $this->source,
-            'recipient'         => $this->recipient,
-            'status'            => $this->status,
-            'consentDate'       => $this->consentDate,
-            'recipientType'     => $this->recipientType,
-            'retailerCode'      => $this->retailerCode,
-            'retailerAccess'    => $this->retailerAccess,
+            'refid'             => $this->refId ?? null,
+            'type'              => $this->type ?? null,
+            'source'            => $this->source ?? null,
+            'recipient'         => $this->recipient ?? null,
+            'status'            => $this->status ?? null,
+            'consentDate'       => $this->consentDate ?? null,
+            'recipientType'     => $this->recipientType ?? null,
+            'retailerCode'      => $this->retailerCode ?? null,
+            'retailerAccess'    => $this->retailerAccess ?? null,
         ];
     }
 
