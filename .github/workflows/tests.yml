@@ -25,9 +25,6 @@ jobs:
                     php-version: ${{ matrix.php }}
                     extensions: simplexml
 
-            -   name: Disable Xdebug
-                run: sudo phpdismod xdebug
-
             -   name: Install dependencies
                 run: composer install --no-progress --no-ansi --profile --no-interaction --no-scripts --no-suggest --prefer-dist
 
