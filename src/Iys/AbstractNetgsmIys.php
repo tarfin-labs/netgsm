@@ -25,7 +25,7 @@ abstract class AbstractNetgsmIys extends NetgsmApiClient
                 'password'  => $this->credentials['secret'],
                 'brandCode' => $this->credentials['brand_code'],
             ],
-            'json'      => $this->body
+            'json'      => $this->body,
         ]);
 
         return $response->getBody()->getContents();

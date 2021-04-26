@@ -130,8 +130,8 @@ class Add
     public function setDefaults(array $defaults): self
     {
         foreach ($defaults as $key => $value) {
-            if (method_exists($this, 'set'. ucfirst($key))) {
-                call_user_func([$this, 'set' . ucfirst($key)], $value);
+            if (method_exists($this, 'set'.ucfirst($key))) {
+                call_user_func([$this, 'set'.ucfirst($key)], $value);
             }
         }
 
