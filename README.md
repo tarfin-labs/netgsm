@@ -25,6 +25,9 @@ This package also provides some simple reporting.
    - [Account Balance](#account-balance)
         - [Remaining Balance](#remaining-balance)
         - [Remaining Package Credits](#remaining-package-credits)
+   - [IYS Integration](#iys)
+        - [Add Address](#add-address)
+        - [Search Address](#search-address)
 - [Testing](#testing)
 - [Security](#security)
 - [Contributing](#contributing)
@@ -295,6 +298,105 @@ class Illuminate\Support\Collection#105 (1) {
       string(3) "SMS"
     }
   }
+}
+```
+
+### IYS Integration
+
+With these services you can add and search any address to IYS.
+
+#### Add Address
+
+This service is used to add a phone number or email address to IYS using NetGsm IYS service.
+
+##### Object Parameters
+
+| Method                | Description | Type | Required | 
+| --------------------- | ----------- | ---- | -------- |
+| setRefId()            | Reference id to query your request | String | No
+| setType()             | Communication type | String | Yes
+| setSource()           | Source of permission | String | Yes
+| setRecipient()        | phone number or email address | String | Yes
+| setStatus()           | Permission status | String | Yes
+| setConsentDate()      | Permission date | Datetime (YYYY-MM-DD H:i:s) | Yes
+| setRecipientType()    | Recipient type | String | Yes
+| setRetailerCode()     | Retailer code | Integer | No
+| setRetailerAccess()   | Retailer access | Integer | No
+
+##### Usage
+
+```php
+$address = new \TarfinLabs\Netgsm\Iys\Requests\Add();
+$address->setRefId(999999)
+        ->setType('MESAJ')
+        ->setSource('HS_WEB')
+        ->setRecipient('+905XXXXXXXXX')
+        ->setStatus('ONAY')
+        ->setConsentDate(now()->toDateTimeString())
+        ->setRecipientType('TACIR');
+
+\TarfinLabs\Netgsm\Netgsm::iys()->addAddress($address)->send();
+```
+
+##### Response Parameters
+```json
+{
+    "code": "0",
+    "error": "false",
+    "uid": "73113cb9-dff0-415b-9491-xxxxxxxxxx"
+}
+```
+
+#### Search Address
+
+This service is used to search a phone number or email address on IYS using NetGsm IYS service.
+
+##### Object Parameters
+
+| Method                | Description | Type | Required | 
+| --------------------- | ----------- | ---- | -------- |
+| setType()             | Communication type | String | Yes (if refId is set to null)
+| setRecipient()        | phone number or email address | String | Yes (if refId is set to null)
+| setRecipientType()    | Recipient type | String | Yes (if refId is set to null)
+| setRefId()            | Reference id to query your request | String | No
+
+##### Usage
+
+```php
+$address = new \TarfinLabs\Netgsm\Iys\Requests\Search();
+$address->setType('MESAJ')
+        ->setRecipient('+905XXXXXXXXX')
+        ->setRecipientType('TACIR')
+        ->setRefId(999999);
+
+\TarfinLabs\Netgsm\Netgsm::iys()->searchAddress($address)->send();
+```
+
+##### Response Parameters
+* Response with a matched address.
+```json
+{
+    "code": "0",
+    "error": "false",
+    "query": {
+        "consentDate": "2020-11-06 11:22:34",
+        "source": "HS_FIZIKSEL_ORTAM",
+        "recipient": "+905XXXXXXXXX",
+        "recipientType": "BIREYSEL",
+        "type": "MESAJ",
+        "status": "ONAY",
+        "creationDate": "2020-11-06 11:23:49",
+        "retailerAccessCount": 0
+        // "querystatus": null
+    }
+}
+```
+
+* Response without any matched address
+```json
+{
+    "code": "50",
+    "error": "Kayıt bulunamadi."
 }
 ```
 

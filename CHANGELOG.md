@@ -4,6 +4,10 @@ All notable changes to `netgsm` will be documented in this file
 
 ## Unreleased
 
+## [3.1.0] - 2021-04-26
+
+- IYS integration (add, search) added.
+
 ## [3.0.1] - 2020-10-08
 
 - Upgrade packages for Laravel 8.
