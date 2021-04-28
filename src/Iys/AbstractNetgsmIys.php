@@ -31,7 +31,7 @@ abstract class AbstractNetgsmIys extends NetgsmApiClient
                 ],
                 'body'      => [
                     'data'      => [
-                        $this->body
+                        $this->body,
                     ],
                 ],
             ],
