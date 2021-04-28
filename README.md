@@ -25,7 +25,7 @@ This package also provides some simple reporting.
    - [Account Balance](#account-balance)
         - [Remaining Balance](#remaining-balance)
         - [Remaining Package Credits](#remaining-package-credits)
-   - [IYS Integration](#iys)
+   - [IYS Integration](#iys-integration)
         - [Add Address](#add-address)
         - [Search Address](#search-address)
 - [Testing](#testing)
@@ -59,6 +59,7 @@ NETGSM_USER_CODE=
 NETGSM_SECRET=
 NETGSM_LANGUAGE=
 NETGSM_HEADER=
+NETGSM_BRANDCODE=
 ],
 ...
 ```
