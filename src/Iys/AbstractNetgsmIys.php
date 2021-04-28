@@ -20,12 +20,21 @@ abstract class AbstractNetgsmIys extends NetgsmApiClient
     public function send(): string
     {
         $response = $this->client->request($this->method, $this->url, [
-            'headers'   => [
-                'username'  => $this->credentials['user_code'],
-                'password'  => $this->credentials['secret'],
-                'brandCode' => $this->credentials['brand_code'],
+            'headers'       => [
+                'Content-Type'  => 'application/json',
             ],
-            'json'      => $this->body,
+            'json' => [
+                'header'    => [
+                    'username'  => $this->credentials['user_code'],
+                    'password'  => $this->credentials['secret'],
+                    'brandCode' => $this->credentials['brand_code'],
+                ],
+                'body'      => [
+                    'data'      => [
+                        $this->body
+                    ],
+                ],
+            ],
         ]);
 
         return $response->getBody()->getContents();

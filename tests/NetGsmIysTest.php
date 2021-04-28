@@ -37,39 +37,48 @@ class NetGsmIysTest extends BaseTestCase
     {
         $data = [
             'headers' => [
-                'username'      => 'test',
-                'password'      => 'test',
-                'brandCode'     => 123456,
+                'Content-Type'      => 'application/json',
             ],
             'json'    => [
-                'refid'         => $this->faker->numerify('####'),
-                'type'          => $this->faker->randomElement(['MESAJ', 'ARAMA']),
-                'source'        => $this->faker->randomElement([
-                    'HS_WEB',
-                    'HS_FIZIKSEL_ORTAM',
-                    'HS_ISLAK_IMZA',
-                    'HS_CAGRI_MERKEZI',
-                    'HS_SOSYAL_MEDYA',
-                    'HS_EPOSTA',
-                    'HS_MESAJ',
-                    'HS_MOBIL',
-                    'HS_EORTAM',
-                    'HS_ETKINLIK',
-                    'HS_2015',
-                    'HS_ATM',
-                    'HS_KARAR',
-                ]),
-                'recipient'     => $this->faker->numerify('+905#########'),
-                'status'        => $this->faker->randomElement(['ONAY', 'RET']),
-                'consentDate'   => $this->faker->date('Y-m-d H:i:s'),
-                'recipientType' => $this->faker->randomElement(['BIREYSEL', 'TACIR']),
-                'retailerCode'  => null,
-                'retailerAccess'=> null,
+                'header' => [
+                    'username'      => 'test',
+                    'password'      => 'test',
+                    'brandCode'     => 123456,
+                ],
+                'body'   => [
+                    'data' => [
+                        [
+                            'refid'         => $this->faker->numerify('####'),
+                            'type'          => $this->faker->randomElement(['MESAJ', 'ARAMA']),
+                            'source'        => $this->faker->randomElement([
+                                'HS_WEB',
+                                'HS_FIZIKSEL_ORTAM',
+                                'HS_ISLAK_IMZA',
+                                'HS_CAGRI_MERKEZI',
+                                'HS_SOSYAL_MEDYA',
+                                'HS_EPOSTA',
+                                'HS_MESAJ',
+                                'HS_MOBIL',
+                                'HS_EORTAM',
+                                'HS_ETKINLIK',
+                                'HS_2015',
+                                'HS_ATM',
+                                'HS_KARAR',
+                            ]),
+                            'recipient'     => $this->faker->numerify('+905#########'),
+                            'status'        => $this->faker->randomElement(['ONAY', 'RET']),
+                            'consentDate'   => $this->faker->date('Y-m-d H:i:s'),
+                            'recipientType' => $this->faker->randomElement(['BIREYSEL', 'TACIR']),
+                            'retailerCode'  => null,
+                            'retailerAccess'=> null,
+                        ],
+                    ],
+                ],
             ],
         ];
 
         $iysAddress = new Add();
-        $iysAddress->setDefaults($data['json']);
+        $iysAddress->setDefaults($data['json']['body']['data'][0]);
 
         $this->httpClient
             ->shouldReceive('request')
@@ -85,20 +94,29 @@ class NetGsmIysTest extends BaseTestCase
     {
         $data = [
             'headers' => [
-                'username'      => 'test',
-                'password'      => 'test',
-                'brandCode'     => 123456,
+                'Content-Type'      => 'application/json',
             ],
             'json'    => [
-                'type'          => $this->faker->randomElement(['MESAJ', 'ARAMA']),
-                'recipient'     => $this->faker->numerify('+905#########'),
-                'recipientType' => $this->faker->randomElement(['BIREYSEL', 'TACIR']),
-                'refid'         => $this->faker->numerify('####'),
+                'header'    => [
+                    'username'      => 'test',
+                    'password'      => 'test',
+                    'brandCode'     => 123456,
+                ],
+                'body'      => [
+                    'data'      => [
+                        [
+                            'type'          => $this->faker->randomElement(['MESAJ', 'ARAMA']),
+                            'recipient'     => $this->faker->numerify('+905#########'),
+                            'recipientType' => $this->faker->randomElement(['BIREYSEL', 'TACIR']),
+                            'refid'         => $this->faker->numerify('####'),
+                        ],
+                    ],
+                ],
             ],
         ];
 
         $iysSearch = new Search();
-        $iysSearch->setDefaults($data['json']);
+        $iysSearch->setDefaults($data['json']['body']['data'][0]);
 
         $this->httpClient
             ->shouldReceive('request')
