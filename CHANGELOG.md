@@ -4,7 +4,7 @@ All notable changes to `netgsm` will be documented in this file
 
 ## Unreleased
 
-## [3.1.0] - 2021-04-26
+## [4.0.0] - 2021-04-26
 
 - IYS integration (add, search) added.
 
