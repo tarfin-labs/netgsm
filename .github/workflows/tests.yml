@@ -9,7 +9,7 @@ jobs:
         strategy:
             fail-fast: true
             matrix:
-                php: [7.3, 7.4]
+                php: [7.4]
                 laravel: [8.*]
                 dependency-version: [prefer-lowest, prefer-stable]
 
@@ -17,13 +17,16 @@ jobs:
 
         steps:
             -   name: Checkout the code
-                uses: actions/checkout@v1
+                uses: actions/checkout@v2
 
-            -   name: Disable Xdebug
-                run: sudo phpdismod xdebug
+            -   name: Setup PHP
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: ${{ matrix.php }}
+                    extensions: simplexml
 
             -   name: Install dependencies
-                run: composer install --no-progress --no-ansi --profile --no-interaction --no-scripts --no-suggest --prefer-dist
+                run: composer install --no-progress --no-ansi --profile --no-interaction --no-scripts --prefer-dist
 
             -   name: Execute tests
                 run: vendor/bin/phpunit --testdox --colors=always --exclude-group skipped

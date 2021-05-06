@@ -9,6 +9,7 @@ use Illuminate\Support\Collection;
 use TarfinLabs\Netgsm\Balance\NetgsmAvailableCredit;
 use TarfinLabs\Netgsm\Balance\NetgsmPackages;
 use TarfinLabs\Netgsm\Exceptions\CouldNotSendNotification;
+use TarfinLabs\Netgsm\Iys\NetgsmIys;
 use TarfinLabs\Netgsm\Report\AbstractNetgsmReport;
 use TarfinLabs\Netgsm\Sms\AbstractNetgsmMessage;
 
@@ -125,5 +126,16 @@ class Netgsm
         $packageService->setCredentials($this->credentials);
 
         return collect($packageService->getPackages());
+    }
+
+    /**
+     * @return NetgsmIys
+     */
+    public function iys(): NetgsmIys
+    {
+        $iysService = new NetgsmIys();
+        $iysService->setClient($this->client)->setCredentials($this->credentials);
+
+        return $iysService;
     }
 }
