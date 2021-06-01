@@ -16,7 +16,7 @@ class NetgsmIys extends AbstractNetgsmIys
     public function addAddress(Add $request): NetgsmIys
     {
         $this->url = $request->getUrl();
-        $this->body = $request->body();
+        $this->body[] = $request->body();
         $this->method = 'POST';
 
         return $this;
@@ -31,7 +31,7 @@ class NetgsmIys extends AbstractNetgsmIys
     public function searchAddress(Search $request): NetgsmIys
     {
         $this->url = $request->getUrl();
-        $this->body = $request->body();
+        $this->body = [$request->body()];
         $this->method = 'POST';
 
         return $this;

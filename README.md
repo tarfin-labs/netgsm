@@ -348,6 +348,36 @@ $address->setRefId(999999)
 }
 ```
 
+#### Bulk Insert
+```php
+$address = new \TarfinLabs\Netgsm\Iys\Requests\Add();
+$address->setRefId(999999)
+        ->setSource('HS_WEB')
+        ->setRecipient('+905XXXXXXXXX')
+        ->setStatus('ONAY')
+        ->setConsentDate(now()->toDateTimeString())
+        ->setRecipientType('TACIR');
+
+$iys = \TarfinLabs\Netgsm\Netgsm::iys();
+$iys->addAddress($address->setType('MESAJ'));
+$iys->addAddress($address->setType('ARAMA'));
+$iys->send();
+```
+
+#### Response Paramaters for Bulk Insert
+```json
+{
+    "code": "0",
+    "error": "false",
+    "uid": "16116f5e-ae2a-4745-927a-xxxxxxxxxxx",
+    "erroritem": {
+        "1": {
+            "recipient": "Telefon numarası 13 karakter ve numerik olmalıdır.+9xxxx"
+        }
+    }
+}
+```
+
 #### Search Address
 
 This service is used to search a phone number or email address on IYS using NetGsm IYS service.

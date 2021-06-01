@@ -4,6 +4,10 @@ All notable changes to `netgsm` will be documented in this file
 
 ## Unreleased
 
+## [4.1.0] - 2021-06-01
+
+- Bulk address adding support added to IYS.
+
 ## [4.0.0] - 2021-04-26
 
 - IYS integration (add, search) added.

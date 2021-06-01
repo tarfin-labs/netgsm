@@ -30,9 +30,7 @@ abstract class AbstractNetgsmIys extends NetgsmApiClient
                     'brandCode' => $this->credentials['brand_code'],
                 ],
                 'body'      => [
-                    'data'      => [
-                        $this->body,
-                    ],
+                    'data'      => $this->body,
                 ],
             ],
         ]);
