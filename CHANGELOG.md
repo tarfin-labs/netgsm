@@ -4,6 +4,10 @@ All notable changes to `netgsm` will be documented in this file
 
 ## Unreleased
 
+## [4.2.0] - 2021-06-03
+
+- PHP 8 support added.
+
 ## [4.1.0] - 2021-06-01
 
 - Bulk address adding support added to IYS.
