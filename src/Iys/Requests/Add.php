@@ -25,7 +25,7 @@ class Add
     protected ?int $retailerAccess;
 
     /**
-     * @param string $refId
+     * @param  string  $refId
      * @return $this
      */
     public function setRefId(string $refId): self
@@ -36,7 +36,7 @@ class Add
     }
 
     /**
-     * @param string $type
+     * @param  string  $type
      * @return $this
      */
     public function setType(string $type): self
@@ -47,7 +47,7 @@ class Add
     }
 
     /**
-     * @param string $source
+     * @param  string  $source
      * @return $this
      */
     public function setSource(string $source): self
@@ -58,7 +58,7 @@ class Add
     }
 
     /**
-     * @param string $recipient
+     * @param  string  $recipient
      * @return $this
      */
     public function setRecipient(string $recipient): self
@@ -69,7 +69,7 @@ class Add
     }
 
     /**
-     * @param string $status
+     * @param  string  $status
      * @return $this
      */
     public function setStatus(string $status): self
@@ -80,7 +80,7 @@ class Add
     }
 
     /**
-     * @param string $consentDate
+     * @param  string  $consentDate
      * @return $this
      */
     public function setConsentDate(string $consentDate): self
@@ -91,7 +91,7 @@ class Add
     }
 
     /**
-     * @param string $recipientType
+     * @param  string  $recipientType
      * @return $this
      */
     public function setRecipientType(string $recipientType): self
@@ -102,7 +102,7 @@ class Add
     }
 
     /**
-     * @param int|null $retailerCode
+     * @param  int|null  $retailerCode
      * @return $this
      */
     public function setRetailerCode(?int $retailerCode): self
@@ -113,7 +113,7 @@ class Add
     }
 
     /**
-     * @param int|null $retailerAccess
+     * @param  int|null  $retailerAccess
      * @return $this
      */
     public function setRetailerAccess(?int $retailerAccess): self
@@ -124,7 +124,7 @@ class Add
     }
 
     /**
-     * @param array $defaults
+     * @param  array  $defaults
      * @return $this
      */
     public function setDefaults(array $defaults): self

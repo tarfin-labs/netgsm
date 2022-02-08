@@ -102,6 +102,7 @@ abstract class AbstractNetgsmMessage extends NetgsmApiClient
 
     /**
      * AbstractNetgsmMessage constructor.
+     *
      * @param  array  $defaults
      * @param  string  $message
      */
@@ -149,6 +150,7 @@ abstract class AbstractNetgsmMessage extends NetgsmApiClient
 
     /**
      * set's the sms origin.
+     *
      * @see https://www.netgsm.com.tr/dokuman/#g%C3%B6nderici-ad%C4%B1-sorgulama
      *
      * @param  null  $header
@@ -204,6 +206,7 @@ abstract class AbstractNetgsmMessage extends NetgsmApiClient
      *
      * @param  string  $sendMethod
      * @return $this
+     *
      * @throws Exception
      */
     public function setSendMethod(string $sendMethod): self
@@ -316,6 +319,7 @@ abstract class AbstractNetgsmMessage extends NetgsmApiClient
      * parses the response from api and returns job id.
      *
      * @return $this
+     *
      * @throws CouldNotSendNotification
      * @throws NetgsmException
      */
@@ -347,6 +351,7 @@ abstract class AbstractNetgsmMessage extends NetgsmApiClient
      * sends a sms via get method.
      *
      * @return $this
+     *
      * @throws CouldNotSendNotification
      * @throws GuzzleException
      * @throws NetgsmException
@@ -362,6 +367,7 @@ abstract class AbstractNetgsmMessage extends NetgsmApiClient
      * sends a sms via xml method.
      *
      * @return $this
+     *
      * @throws CouldNotSendNotification
      * @throws GuzzleException
      * @throws NetgsmException
@@ -379,6 +385,7 @@ abstract class AbstractNetgsmMessage extends NetgsmApiClient
      * sends a sms via specified sending method.
      *
      * @return $this
+     *
      * @throws IncorrectPhoneNumberFormatException
      */
     public function send()

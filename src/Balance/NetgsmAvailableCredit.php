@@ -39,6 +39,7 @@ class NetgsmAvailableCredit extends NetgsmApiClient
      * extracts credit from the returned response.
      *
      * @return string
+     *
      * @throws NetgsmException
      */
     public function parseResponse(): ?string
