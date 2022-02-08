@@ -47,6 +47,7 @@ class NetgsmSmsDetailReport extends AbstractNetgsmReport
     /**
      * Sets the Netgsm service bulkId
      * If bulkId is set, type value is set to 0.
+     *
      * @see https://www.netgsm.com.tr/dokuman/#http-get-rapor
      *
      * @param  mixed  $bulkId
@@ -85,6 +86,7 @@ class NetgsmSmsDetailReport extends AbstractNetgsmReport
      *
      * @param $response
      * @return Collection
+     *
      * @throws \TarfinLabs\Netgsm\Exceptions\ReportException
      */
     public function parseResponse(string $response): Collection

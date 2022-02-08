@@ -47,6 +47,7 @@ class NetgsmApiClient
      * @param  null  $params
      * @param  array  $headers
      * @return string
+     *
      * @throws GuzzleException
      */
     protected function callApi($method, $url, $params = null, $headers = [])
