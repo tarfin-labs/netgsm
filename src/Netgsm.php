@@ -21,6 +21,7 @@ class Netgsm
 
     /**
      * Netgsm constructor.
+     *
      * @param  Client  $client
      * @param  array  $credentials
      * @param  array  $defaults
@@ -35,6 +36,7 @@ class Netgsm
     /**
      * @param  AbstractNetgsmMessage  $netgsmMessage
      * @return mixed
+     *
      * @throws CouldNotSendNotification
      * @throws Exceptions\IncorrectPhoneNumberFormatException
      * @throws GuzzleException
@@ -62,6 +64,7 @@ class Netgsm
      * @param $endDate
      * @param  array  $filters
      * @return Collection
+     *
      * @throws GuzzleException
      * @throws Exceptions\ReportException
      */
@@ -100,6 +103,7 @@ class Netgsm
      * Returns the remaining credits amount (TL) on the netgsm account.
      *
      * @return string
+     *
      * @throws Exceptions\NetgsmException
      * @throws GuzzleException
      */
@@ -116,6 +120,7 @@ class Netgsm
      * Returns the available package list and their balances on the netgsm account.
      *
      * @return array
+     *
      * @throws Exceptions\NetgsmException
      * @throws GuzzleException
      */

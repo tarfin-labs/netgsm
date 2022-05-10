@@ -15,7 +15,7 @@ class Search
     protected string $refId;
 
     /**
-     * @param string $type
+     * @param  string  $type
      * @return $this
      */
     public function setType(string $type): self
@@ -26,7 +26,7 @@ class Search
     }
 
     /**
-     * @param string $recipient
+     * @param  string  $recipient
      * @return $this
      */
     public function setRecipient(string $recipient): self
@@ -37,7 +37,7 @@ class Search
     }
 
     /**
-     * @param string $recipientType
+     * @param  string  $recipientType
      * @return $this
      */
     public function setRecipientType(string $recipientType): self
@@ -48,7 +48,7 @@ class Search
     }
 
     /**
-     * @param string $refId
+     * @param  string  $refId
      * @return $this
      */
     public function setRefId(string $refId): self
@@ -59,7 +59,7 @@ class Search
     }
 
     /**
-     * @param array $defaults
+     * @param  array  $defaults
      * @return $this
      */
     public function setDefaults(array $defaults): self

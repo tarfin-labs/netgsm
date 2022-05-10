@@ -153,6 +153,7 @@ abstract class AbstractNetgsmReport extends NetgsmApiClient
      * returns the netgsm basic sms reports as a collection.
      *
      * @return Collection
+     *
      * @throws GuzzleException
      * @throws ReportException
      */
@@ -191,6 +192,7 @@ abstract class AbstractNetgsmReport extends NetgsmApiClient
      *
      * @param $response
      * @return bool
+     *
      * @throws ReportException
      */
     public function validateResponse($response): bool

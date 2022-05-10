@@ -10,7 +10,7 @@ class NetgsmIys extends AbstractNetgsmIys
     /**
      * Add address request.
      *
-     * @param Add $request
+     * @param  Add  $request
      * @return $this
      */
     public function addAddress(Add $request): NetgsmIys
@@ -25,7 +25,7 @@ class NetgsmIys extends AbstractNetgsmIys
     /**
      * Search address request.
      *
-     * @param Search $request
+     * @param  Search  $request
      * @return $this
      */
     public function searchAddress(Search $request): NetgsmIys

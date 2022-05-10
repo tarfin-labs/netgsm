@@ -27,6 +27,7 @@ class NetgsmSmsMessage extends AbstractNetgsmMessage
 
     /**
      * creates the xml request body for sms sending via xml post method.
+     *
      * @return string
      */
     protected function createXmlPost(): string

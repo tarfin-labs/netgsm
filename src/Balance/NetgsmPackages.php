@@ -32,6 +32,7 @@ class NetgsmPackages extends NetgsmApiClient
      * handles the response and return the package list as an array.
      *
      * @return array
+     *
      * @throws NetgsmException
      */
     public function parseResponse(): array
@@ -61,6 +62,7 @@ class NetgsmPackages extends NetgsmApiClient
      * returns the packages list for associated netgsm account.
      *
      * @return array
+     *
      * @throws GuzzleException
      * @throws NetgsmException
      */
