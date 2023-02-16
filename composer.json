@@ -33,9 +33,9 @@
     "require": {
         "php": "^7.4|^8.0|^8.1",
         "guzzlehttp/guzzle": "^7.1",
-        "illuminate/support": "^8.0|^9.0",
-        "illuminate/notifications": "^8.0|^9.0",
-        "illuminate/translation": "^8.0|^9.0",
+        "illuminate/support": "^8.0|^9.0|^10.0",
+        "illuminate/notifications": "^8.0|^9.0|^10.0",
+        "illuminate/translation": "^8.0|^9.0|^10.0",
         "nesbot/carbon": "^2.0",
         "ext-simplexml": "*"
     },
