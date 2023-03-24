@@ -55,7 +55,7 @@ Add your Netgsm User Code, Default header (name or number of sender), and secret
 ```php
 // .env
 ...
-NETGSM_USER_CODE=
+NETGSM_USERCODE=
 NETGSM_SECRET=
 NETGSM_LANGUAGE=
 NETGSM_HEADER=
@@ -63,7 +63,7 @@ NETGSM_BRANDCODE=
 ],
 ...
 ```
-NETGSM_USER_CODE and NETGSM_SECRET is authentication information of netgsm. NETGSM_HEADER is default header (name or number of sender) of sms messages.
+NETGSM_USERCODE and NETGSM_SECRET is authentication information of netgsm. NETGSM_HEADER is default header (name or number of sender) of sms messages.
 
 ### Usage
 #### Service Methods
