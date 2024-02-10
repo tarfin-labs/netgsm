@@ -69,7 +69,9 @@ class NetgsmAvailableCredit extends NetgsmApiClient
      */
     public function getCredit(): ?string
     {
-        $this->response = $this->callApi('GET', $this->url);
+        $this->response = $this->callApi('GET', $this->url,null, [
+            "Content-Type"=> "application/json"
+        ]);
 
         return $this->parseResponse();
     }
