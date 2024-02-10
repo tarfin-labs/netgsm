@@ -24,7 +24,7 @@ class NetgsmAvailableCredit extends NetgsmApiClient
     /**
      * @var string
      */
-    protected $url = 'balance/list/get';
+    protected $url = 'balance/list/xml';
 
     /**
      * @var array
