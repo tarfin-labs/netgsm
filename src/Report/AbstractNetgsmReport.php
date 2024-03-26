@@ -131,8 +131,8 @@ abstract class AbstractNetgsmReport extends NetgsmApiClient
     /**
      * formats the value by specified type.
      *
-     * @param $value
-     * @param $format
+     * @param  $value
+     * @param  $format
      * @return int|string
      */
     protected function formatValue($value, $format)
@@ -160,7 +160,7 @@ abstract class AbstractNetgsmReport extends NetgsmApiClient
     public function getReports(): Collection
     {
         $data = [
-            'page'     => 1,
+            'page' => 1,
         ];
 
         $data = array_merge($data, $this->filters);
@@ -190,7 +190,7 @@ abstract class AbstractNetgsmReport extends NetgsmApiClient
     /**
      * validates the response returned from netgsm report api.
      *
-     * @param $response
+     * @param  $response
      * @return bool
      *
      * @throws ReportException

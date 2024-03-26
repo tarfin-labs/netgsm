@@ -23,8 +23,8 @@ class NetgsmPackages extends NetgsmApiClient
      * @var array
      */
     protected $errorCodes = [
-        '30'  => NetgsmErrors::CREDENTIALS_INCORRECT,
-        '40'  => NetgsmErrors::NO_RECORD,
+        '30' => NetgsmErrors::CREDENTIALS_INCORRECT,
+        '40' => NetgsmErrors::NO_RECORD,
         '100' => NetgsmErrors::SYSTEM_ERROR,
     ];
 
@@ -49,8 +49,8 @@ class NetgsmPackages extends NetgsmApiClient
             $columns = array_filter(explode('|', $row));
             $columns = array_map('trim', $columns);
             $availablePackages[] = [
-                'amount'      => (int) $columns[0],
-                'amountType'  => $columns[1] ?? null,
+                'amount' => (int) $columns[0],
+                'amountType' => $columns[1] ?? null,
                 'packageType' => $columns[2] ?? null,
             ];
         }

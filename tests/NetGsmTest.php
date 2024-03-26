@@ -31,7 +31,7 @@ class NetGsmTest extends BaseTestCase
 
         $this->netgsm = new Netgsm($this->httpClient, [
             'user_code' => $this->faker->userName,
-            'secret'    => $this->faker->password,
+            'secret' => $this->faker->password,
         ], [
             'language' => $this->faker->languageCode,
             'header' => $this->faker->word,
@@ -40,7 +40,7 @@ class NetGsmTest extends BaseTestCase
     }
 
     /**
-     * @param $phone
+     * @param  $phone
      * @return NetgsmSmsMessage
      */
     protected function newSmsMessage($phone = null)

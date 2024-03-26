@@ -28,12 +28,12 @@ class NetgsmAvailablePackagesTest extends BaseTestCase
 
         $this->netgsm = new Netgsm($this->httpClient, [
             'user_code' => $this->faker->userName,
-            'secret'    => $this->faker->password,
+            'secret' => $this->faker->password,
         ]);
     }
 
     /**
-     * @param $response
+     * @param  $response
      */
     protected function mockCreditApiRequest($response)
     {

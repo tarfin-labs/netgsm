@@ -25,7 +25,7 @@ class NetgsmSmsReport extends AbstractNetgsmReport
      * @var array
      */
     protected $filters = [
-        'type'    => 2,
+        'type' => 2,
         'version' => 2,
     ];
 
@@ -34,28 +34,28 @@ class NetgsmSmsReport extends AbstractNetgsmReport
      */
     protected $columnMap = [
         0 => [
-            'jobId'  => 'integer',
-            'phone'  => 'string',
+            'jobId' => 'integer',
+            'phone' => 'string',
             'status' => 'integer',
         ],
         1 => [
-            'jobId'  => 'integer',
-            'phone'  => 'string',
+            'jobId' => 'integer',
+            'phone' => 'string',
             'status' => 'integer',
         ],
         2 => [
-            'jobId'        => 'integer',
-            'phone'        => 'string',
-            'status'       => 'integer',
+            'jobId' => 'integer',
+            'phone' => 'string',
+            'status' => 'integer',
             'operatorCode' => 'integer',
-            'length'       => 'integer',
-            'startDate'    => 'date',
-            'startTime'    => 'date',
-            'errorCode'    => 'integer',
+            'length' => 'integer',
+            'startDate' => 'date',
+            'startTime' => 'date',
+            'errorCode' => 'integer',
         ],
         3 => [
-            'jobId'  => 'integer',
-            'phone'  => 'string',
+            'jobId' => 'integer',
+            'phone' => 'string',
             'status' => 'integer',
         ],
     ];
@@ -64,14 +64,14 @@ class NetgsmSmsReport extends AbstractNetgsmReport
      * @var array
      */
     protected $columns = [
-        'jobId'        => null,
-        'phone'        => null,
-        'status'       => null,
+        'jobId' => null,
+        'phone' => null,
+        'status' => null,
         'operatorCode' => null,
-        'length'       => null,
-        'startDate'    => null,
-        'startTime'    => null,
-        'errorCode'    => null,
+        'length' => null,
+        'startDate' => null,
+        'startTime' => null,
+        'errorCode' => null,
     ];
 
     /**

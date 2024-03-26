@@ -43,7 +43,7 @@ class NetgsmServiceProvider extends ServiceProvider
 
             $client = new Client([
                 'base_uri' => $config['defaults']['base_uri'],
-                'timeout'  => $config['defaults']['timeout'],
+                'timeout' => $config['defaults']['timeout'],
             ]);
 
             return new Netgsm($client, $config['credentials'], $config['defaults']);

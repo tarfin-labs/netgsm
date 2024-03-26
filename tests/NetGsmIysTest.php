@@ -26,8 +26,8 @@ class NetGsmIysTest extends BaseTestCase
         $this->response = Mockery::mock(ResponseInterface::class);
 
         $this->netgsm = new Netgsm($this->httpClient, [
-            'user_code'  => 'test',
-            'secret'     => 'test',
+            'user_code' => 'test',
+            'secret' => 'test',
             'brand_code' => 123456,
         ]);
     }
@@ -37,20 +37,20 @@ class NetGsmIysTest extends BaseTestCase
     {
         $data = [
             'headers' => [
-                'Content-Type'      => 'application/json',
+                'Content-Type' => 'application/json',
             ],
-            'json'    => [
+            'json' => [
                 'header' => [
-                    'username'      => 'test',
-                    'password'      => 'test',
-                    'brandCode'     => 123456,
+                    'username' => 'test',
+                    'password' => 'test',
+                    'brandCode' => 123456,
                 ],
-                'body'   => [
+                'body' => [
                     'data' => [
                         [
-                            'refid'         => $this->faker->numerify('####'),
-                            'type'          => $this->faker->randomElement(['MESAJ', 'ARAMA']),
-                            'source'        => $this->faker->randomElement([
+                            'refid' => $this->faker->numerify('####'),
+                            'type' => $this->faker->randomElement(['MESAJ', 'ARAMA']),
+                            'source' => $this->faker->randomElement([
                                 'HS_WEB',
                                 'HS_FIZIKSEL_ORTAM',
                                 'HS_ISLAK_IMZA',
@@ -65,12 +65,12 @@ class NetGsmIysTest extends BaseTestCase
                                 'HS_ATM',
                                 'HS_KARAR',
                             ]),
-                            'recipient'     => $this->faker->numerify('+905#########'),
-                            'status'        => $this->faker->randomElement(['ONAY', 'RET']),
-                            'consentDate'   => $this->faker->date('Y-m-d H:i:s'),
+                            'recipient' => $this->faker->numerify('+905#########'),
+                            'status' => $this->faker->randomElement(['ONAY', 'RET']),
+                            'consentDate' => $this->faker->date('Y-m-d H:i:s'),
                             'recipientType' => $this->faker->randomElement(['BIREYSEL', 'TACIR']),
-                            'retailerCode'  => null,
-                            'retailerAccess'=> null,
+                            'retailerCode' => null,
+                            'retailerAccess' => null,
                         ],
                     ],
                 ],
@@ -94,21 +94,21 @@ class NetGsmIysTest extends BaseTestCase
     {
         $data = [
             'headers' => [
-                'Content-Type'      => 'application/json',
+                'Content-Type' => 'application/json',
             ],
-            'json'    => [
-                'header'    => [
-                    'username'      => 'test',
-                    'password'      => 'test',
-                    'brandCode'     => 123456,
+            'json' => [
+                'header' => [
+                    'username' => 'test',
+                    'password' => 'test',
+                    'brandCode' => 123456,
                 ],
-                'body'      => [
-                    'data'      => [
+                'body' => [
+                    'data' => [
                         [
-                            'type'          => $this->faker->randomElement(['MESAJ', 'ARAMA']),
-                            'recipient'     => $this->faker->numerify('+905#########'),
+                            'type' => $this->faker->randomElement(['MESAJ', 'ARAMA']),
+                            'recipient' => $this->faker->numerify('+905#########'),
                             'recipientType' => $this->faker->randomElement(['BIREYSEL', 'TACIR']),
-                            'refid'         => $this->faker->numerify('####'),
+                            'refid' => $this->faker->numerify('####'),
                         ],
                     ],
                 ],

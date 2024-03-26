@@ -31,12 +31,12 @@ class NetGsmReportTest extends BaseTestCase
 
         $this->netgsm = new Netgsm($this->httpClient, [
             'user_code' => $this->faker->userName,
-            'secret'    => $this->faker->password,
+            'secret' => $this->faker->password,
         ]);
     }
 
     /**
-     * @param $response
+     * @param  $response
      */
     protected function mockReportApiRequest($response)
     {
@@ -49,8 +49,8 @@ class NetGsmReportTest extends BaseTestCase
     }
 
     /**
-     * @param $version
-     * @param $rowCount
+     * @param  $version
+     * @param  $rowCount
      * @return array
      */
     protected function generateResponse($version, $rowCount): array
@@ -103,7 +103,7 @@ class NetGsmReportTest extends BaseTestCase
     }
 
     /**
-     * @param $items
+     * @param  $items
      * @return string|null
      */
     protected function convertRaw($items)
@@ -118,7 +118,7 @@ class NetGsmReportTest extends BaseTestCase
 
     /**
      * @param  array  $items
-     * @param $version
+     * @param  $version
      * @return Collection
      */
     protected function convertCollection(array $items, int $version): Collection

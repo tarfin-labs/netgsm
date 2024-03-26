@@ -30,8 +30,8 @@ class NetgsmAvailableCredit extends NetgsmApiClient
      * @var array
      */
     protected $errorCodes = [
-        '30'  => NetgsmErrors::CREDENTIALS_INCORRECT,
-        '40'  => NetgsmErrors::NO_RECORD,
+        '30' => NetgsmErrors::CREDENTIALS_INCORRECT,
+        '40' => NetgsmErrors::NO_RECORD,
         '100' => NetgsmErrors::SYSTEM_ERROR,
     ];
 

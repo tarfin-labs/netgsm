@@ -146,15 +146,15 @@ class Add
     public function body(): array
     {
         return [
-            'refid'             => $this->refId ?? null,
-            'type'              => $this->type ?? null,
-            'source'            => $this->source ?? null,
-            'recipient'         => $this->recipient ?? null,
-            'status'            => $this->status ?? null,
-            'consentDate'       => $this->consentDate ?? null,
-            'recipientType'     => $this->recipientType ?? null,
-            'retailerCode'      => $this->retailerCode ?? null,
-            'retailerAccess'    => $this->retailerAccess ?? null,
+            'refid' => $this->refId ?? null,
+            'type' => $this->type ?? null,
+            'source' => $this->source ?? null,
+            'recipient' => $this->recipient ?? null,
+            'status' => $this->status ?? null,
+            'consentDate' => $this->consentDate ?? null,
+            'recipientType' => $this->recipientType ?? null,
+            'retailerCode' => $this->retailerCode ?? null,
+            'retailerAccess' => $this->retailerAccess ?? null,
         ];
     }
 

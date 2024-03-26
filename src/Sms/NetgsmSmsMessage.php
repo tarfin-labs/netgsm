@@ -63,12 +63,12 @@ class NetgsmSmsMessage extends AbstractNetgsmMessage
     protected function mappers(): array
     {
         return [
-            'gsmno'     => implode(',', $this->recipients),
+            'gsmno' => implode(',', $this->recipients),
             'msgheader' => $this->header ?? $this->defaults['header'],
-            'message'   => $this->message,
+            'message' => $this->message,
             'startdate' => ! empty($this->startDate) ? $this->startDate->format('dmYHi') : null,
-            'stopdate'  => ! empty($this->endDate) ? $this->endDate->format('dmYHi') : null,
-            'izin'      => (int) $this->isAuthorizedData(),
+            'stopdate' => ! empty($this->endDate) ? $this->endDate->format('dmYHi') : null,
+            'izin' => (int) $this->isAuthorizedData(),
         ];
     }
 }
