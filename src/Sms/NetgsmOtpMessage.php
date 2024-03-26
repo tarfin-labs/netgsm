@@ -9,13 +9,13 @@ class NetgsmOtpMessage extends AbstractNetgsmMessage
     protected $url = 'sms/send/otp';
 
     protected $errorCodes = [
-        '20'  => NetgsmErrors::MESSAGE_TOO_LONG,
-        '30'  => NetgsmErrors::CREDENTIALS_INCORRECT,
-        '40'  => NetgsmErrors::SENDER_INCORRECT,
-        '50'  => NetgsmErrors::RECEIVER_INCORRECT,
-        '60'  => NetgsmErrors::OTP_ACCOUNT_NOT_DEFINED,
-        '70'  => NetgsmErrors::PARAMETERS_INCORRECT,
-        '80'  => NetgsmErrors::QUERY_LIMIT_EXCEED,
+        '20' => NetgsmErrors::MESSAGE_TOO_LONG,
+        '30' => NetgsmErrors::CREDENTIALS_INCORRECT,
+        '40' => NetgsmErrors::SENDER_INCORRECT,
+        '50' => NetgsmErrors::RECEIVER_INCORRECT,
+        '60' => NetgsmErrors::OTP_ACCOUNT_NOT_DEFINED,
+        '70' => NetgsmErrors::PARAMETERS_INCORRECT,
+        '80' => NetgsmErrors::QUERY_LIMIT_EXCEED,
         '100' => NetgsmErrors::SYSTEM_ERROR,
     ];
 
@@ -69,8 +69,8 @@ class NetgsmOtpMessage extends AbstractNetgsmMessage
     {
         return [
             'msgheader' => $this->header ?? $this->defaults['header'],
-            'msg'       => $this->message,
-            'no'        => is_array($this->recipients) ? $this->recipients[0] : $this->recipients,
+            'msg' => $this->message,
+            'no' => is_array($this->recipients) ? $this->recipients[0] : $this->recipients,
         ];
     }
 }
