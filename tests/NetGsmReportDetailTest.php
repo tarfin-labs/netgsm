@@ -32,13 +32,13 @@ class NetGsmReportDetailTest extends BaseTestCase
 
         $this->netgsm = new Netgsm($this->httpClient, [
             'user_code' => $this->faker->userName,
-            'secret'    => $this->faker->password,
+            'secret' => $this->faker->password,
         ]);
     }
 
     /**
-     * @param $rowCount
-     * @param $times
+     * @param  $rowCount
+     * @param  $times
      * @return array
      */
     protected function mockReportApiRequest($rowCount, $times)
@@ -71,7 +71,7 @@ class NetGsmReportDetailTest extends BaseTestCase
     }
 
     /**
-     * @param $rowCount
+     * @param  $rowCount
      * @return array
      */
     protected function generateResponse($rowCount): array
@@ -79,13 +79,13 @@ class NetGsmReportDetailTest extends BaseTestCase
         $response = [];
         for ($i = 0; $i < $rowCount; $i++) {
             $response[] = [
-                'jobId'     => $this->faker->numberBetween(11111, 99999),
+                'jobId' => $this->faker->numberBetween(11111, 99999),
                 'startDate' => $this->faker->date,
-                'endDate'   => $this->faker->date,
-                'header'    => $this->faker->word,
-                'message'   => $this->faker->sentence,
-                'status'    => $this->faker->randomElement(range(1, 9)),
-                'total'     => $this->faker->numberBetween(1, 10),
+                'endDate' => $this->faker->date,
+                'header' => $this->faker->word,
+                'message' => $this->faker->sentence,
+                'status' => $this->faker->randomElement(range(1, 9)),
+                'total' => $this->faker->numberBetween(1, 10),
             ];
         }
 
@@ -93,7 +93,7 @@ class NetGsmReportDetailTest extends BaseTestCase
     }
 
     /**
-     * @param $items
+     * @param  $items
      * @return string|null
      */
     protected function convertXml($items)
@@ -122,7 +122,7 @@ class NetGsmReportDetailTest extends BaseTestCase
 
     /**
      * @param  array  $items
-     * @param $version
+     * @param  $version
      * @return Collection
      */
     protected function convertCollection(array $items, int $version): Collection

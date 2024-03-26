@@ -60,8 +60,8 @@ class Netgsm
      * Get sms status report between given dates.
      *
      * @param  AbstractNetgsmReport  $report
-     * @param $startDate
-     * @param $endDate
+     * @param  $startDate
+     * @param  $endDate
      * @param  array  $filters
      * @return Collection
      *

@@ -39,9 +39,9 @@ class NetgsmSmsDetailReport extends AbstractNetgsmReport
      * @var array
      */
     protected $filters = [
-        'type'    => 1,
+        'type' => 1,
         'version' => 1,
-        'view'    => 2,
+        'view' => 2,
     ];
 
     /**
@@ -65,26 +65,26 @@ class NetgsmSmsDetailReport extends AbstractNetgsmReport
     /**
      * Processes and returns a report line.
      *
-     * @param $line
+     * @param  $line
      * @return array
      */
     public function processRow($line): array
     {
         return [
-            'jobId'     => (int) $line->msginfo->jobID,
-            'message'   => (string) $line->msginfo->msg,
+            'jobId' => (int) $line->msginfo->jobID,
+            'message' => (string) $line->msginfo->msg,
             'startDate' => (string) $line->datetime->startdate,
-            'endDate'   => (string) $line->datetime->stopdate,
-            'status'    => (string) $line->msginfo->state,
-            'total'     => (string) $line->msginfo->total,
-            'header'    => (string) $line->msginfo->msgheader,
+            'endDate' => (string) $line->datetime->stopdate,
+            'status' => (string) $line->msginfo->state,
+            'total' => (string) $line->msginfo->total,
+            'header' => (string) $line->msginfo->msgheader,
         ];
     }
 
     /**
      * Parses the XML response returned from the Netgsm API service.
      *
-     * @param $response
+     * @param  $response
      * @return Collection
      *
      * @throws \TarfinLabs\Netgsm\Exceptions\ReportException
