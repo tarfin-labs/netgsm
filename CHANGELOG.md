@@ -4,6 +4,12 @@ All notable changes to `netgsm` will be documented in this file
 
 ## Unreleased
 
+## [5.0.0] - 2025-02-20
+- Laravel 12 support added.
+- PHP 8.4 support added.
+- Laravel 10 and below versions are no longer supported.
+- PHP 8.2 and below versions are no longer supported.
+
 ## [4.6.0] - 2024-04-08
 
 - Laravel 11 and PHP 8.3 support added.
