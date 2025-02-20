@@ -80,13 +80,24 @@ class NetGsmIysTest extends BaseTestCase
         $iysAddress = new Add();
         $iysAddress->setDefaults($data['json']['body']['data'][0]);
 
+        $successResponse = [
+            'code' => '0',
+            'error' => 'false',
+            'uid' => '73113cb9-dff0-415b-9491-xxxxxxxxxx'
+        ];
+
         $this->httpClient
             ->shouldReceive('request')
             ->withSomeOfArgs('POST', 'iys/add', $data)
             ->once()
-            ->andReturn(new Response());
+            ->andReturn(new Response(200, [], json_encode($successResponse)));
 
-        $this->netgsm->iys()->addAddress($iysAddress)->send();
+        $response = $this->netgsm->iys()->addAddress($iysAddress)->send();
+        $decodedResponse = json_decode($response, true);
+
+        $this->assertEquals('0', $decodedResponse['code']);
+        $this->assertEquals('false', $decodedResponse['error']);
+        $this->assertEquals('73113cb9-dff0-415b-9491-xxxxxxxxxx', $decodedResponse['uid']);
     }
 
     /** @test */
@@ -118,12 +129,40 @@ class NetGsmIysTest extends BaseTestCase
         $iysSearch = new Search();
         $iysSearch->setDefaults($data['json']['body']['data'][0]);
 
+        $searchResponse = [
+            'code' => '0',
+            'error' => 'false',
+            'query' => [
+                'consentDate' => '2020-11-06 11:22:34',
+                'source' => 'HS_FIZIKSEL_ORTAM',
+                'recipient' => '+905XXXXXXXXX',
+                'recipientType' => 'BIREYSEL',
+                'type' => 'MESAJ',
+                'status' => 'ONAY',
+                'creationDate' => '2020-11-06 11:23:49',
+                'retailerAccessCount' => 0
+            ]
+        ];
+
         $this->httpClient
             ->shouldReceive('request')
             ->withSomeOfArgs('POST', 'iys/search', $data)
             ->once()
-            ->andReturn(new Response());
+            ->andReturn(new Response(200, [], json_encode($searchResponse)));
 
-        $this->netgsm->iys()->searchAddress($iysSearch)->send();
+        $response = $this->netgsm->iys()->searchAddress($iysSearch)->send();
+        $decodedResponse = json_decode($response, true);
+
+        $this->assertEquals('0', $decodedResponse['code']);
+        $this->assertEquals('false', $decodedResponse['error']);
+        $this->assertArrayHasKey('query', $decodedResponse);
+        $this->assertEquals('ONAY', $decodedResponse['query']['status']);
+        $this->assertEquals('MESAJ', $decodedResponse['query']['type']);
+        $this->assertEquals('HS_FIZIKSEL_ORTAM', $decodedResponse['query']['source']);
+        $this->assertEquals('BIREYSEL', $decodedResponse['query']['recipientType']);
+        $this->assertEquals('+905XXXXXXXXX', $decodedResponse['query']['recipient']);
+        $this->assertEquals('2020-11-06 11:22:34', $decodedResponse['query']['consentDate']);
+        $this->assertEquals('2020-11-06 11:23:49', $decodedResponse['query']['creationDate']);
+        $this->assertEquals(0, $decodedResponse['query']['retailerAccessCount']);
     }
 }
