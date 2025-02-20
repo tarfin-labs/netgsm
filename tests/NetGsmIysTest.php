@@ -84,7 +84,7 @@ class NetGsmIysTest extends BaseTestCase
         $successResponse = [
             'code' => '0',
             'error' => 'false',
-            'uid' => '73113cb9-dff0-415b-9491-xxxxxxxxxx'
+            'uid' => '73113cb9-dff0-415b-9491-xxxxxxxxxx',
         ];
 
         $this->httpClient
@@ -141,8 +141,8 @@ class NetGsmIysTest extends BaseTestCase
                 'type' => 'MESAJ',
                 'status' => 'ONAY',
                 'creationDate' => '2020-11-06 11:23:49',
-                'retailerAccessCount' => 0
-            ]
+                'retailerAccessCount' => 0,
+            ],
         ];
 
         $this->httpClient
