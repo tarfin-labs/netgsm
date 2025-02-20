@@ -5,6 +5,7 @@ namespace TarfinLabs\Netgsm\Tests;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;
 use Mockery;
+use PHPUnit\Framework\Attributes\Test;
 use Psr\Http\Message\ResponseInterface;
 use TarfinLabs\Netgsm\Iys\Requests\Add;
 use TarfinLabs\Netgsm\Iys\Requests\Search;
@@ -32,7 +33,7 @@ class NetGsmIysTest extends BaseTestCase
         ]);
     }
 
-    /** @test */
+    #[Test]
     public function it_makes_add_requests_for_iys_addresses()
     {
         $data = [
@@ -100,7 +101,7 @@ class NetGsmIysTest extends BaseTestCase
         $this->assertEquals('73113cb9-dff0-415b-9491-xxxxxxxxxx', $decodedResponse['uid']);
     }
 
-    /** @test */
+    #[Test]
     public function it_makes_search_requests_for_iys_addresses()
     {
         $data = [

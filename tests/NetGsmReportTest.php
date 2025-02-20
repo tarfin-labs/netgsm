@@ -7,6 +7,7 @@ use GuzzleHttp\Psr7\Response;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Mockery;
+use PHPUnit\Framework\Attributes\Test;
 use TarfinLabs\Netgsm\Exceptions\ReportException;
 use TarfinLabs\Netgsm\Netgsm;
 use TarfinLabs\Netgsm\Report\NetgsmSmsReport;
@@ -167,9 +168,7 @@ class NetGsmReportTest extends BaseTestCase
         return $report;
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_does_get_same_row_count_with_correct_arguments()
     {
         $version = $this->faker->randomElement([0, 1, 2, 3]);
@@ -188,9 +187,7 @@ class NetGsmReportTest extends BaseTestCase
         $this->assertSame($report->count(), $rowCount);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function should_throw_exception_when_return_code_is_not_success()
     {
         $version = $this->faker->randomElement([0, 1, 2, 3]);
@@ -209,9 +206,7 @@ class NetGsmReportTest extends BaseTestCase
         ]);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function response_should_properly_parsed_according_by_version()
     {
         $version = $this->faker->randomElement([2]);

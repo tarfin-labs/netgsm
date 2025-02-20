@@ -4,6 +4,7 @@ namespace TarfinLabs\Netgsm\Tests;
 
 use GuzzleHttp\Client;
 use Mockery;
+use PHPUnit\Framework\Attributes\Test;
 use TarfinLabs\Netgsm\Netgsm;
 use TarfinLabs\Netgsm\NetgsmChannel;
 use TarfinLabs\Netgsm\Tests\notification\TestNotifiable;
@@ -50,7 +51,7 @@ class NetGsmChannelTest extends BaseTestCase
         $this->channel = new NetGsmChannel($this->netgsm);
     }
 
-    /** @test */
+    #[Test]
     public function test_it_shares_message(): void
     {
         $this->netgsm->shouldReceive('sendSms')->once();

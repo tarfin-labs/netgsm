@@ -5,6 +5,7 @@ namespace TarfinLabs\Netgsm\Tests;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;
 use Mockery;
+use PHPUnit\Framework\Attributes\Test;
 use TarfinLabs\Netgsm\Exceptions\NetgsmException;
 use TarfinLabs\Netgsm\Netgsm;
 
@@ -45,9 +46,7 @@ class NetgsmAvailablePackagesTest extends BaseTestCase
             ));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_get_available_package_amounts_with_correct_arguments()
     {
         $response = '1000 | Adet Flash Sms | <BR>953 | Adet OTP Sms | <BR>643 | Adet | SMS<BR>';
@@ -64,9 +63,7 @@ class NetgsmAvailablePackagesTest extends BaseTestCase
         $this->assertSame($response[2]['amountType'], 'Adet');
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function should_throw_exception_when_return_code_is_not_success()
     {
         $errorCode = $this->faker->randomElement([30, 40, 100]);
