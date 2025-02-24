@@ -92,7 +92,7 @@ class NetgsmSmsDetailReport extends AbstractNetgsmReport
     public function parseResponse(string $response): Collection
     {
         $this->validateResponse($response);
-        $response = utf8_encode(html_entity_decode($response));
+        $response = mb_convert_encoding(html_entity_decode($response), 'UTF-8', 'ISO-8859-9');
         $xml = new SimpleXMLElement($response);
 
         $collection = new Collection();

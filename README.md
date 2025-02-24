@@ -9,8 +9,8 @@
 With this package, you can send easily [Netgsm notifications](https://www.netgsm.com.tr/dokuman/#api-dok%C3%BCman%C4%B1) with Laravel `^8.0`.
 This package also provides some simple reporting.
 
-> This package requires PHP `7.3` or higher and Laravel `8.0` or higher.   
-> For older versions of Laravel, please use version `^2.0.0` of this package!   
+> This package requires PHP `8.2` or higher and Laravel `11.0` or higher.   
+> For older versions of Laravel, please use version `^4.0.0` of this package!   
 
 ## Contents
 

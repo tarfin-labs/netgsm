@@ -5,6 +5,7 @@ namespace TarfinLabs\Netgsm\Tests;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;
 use Mockery;
+use PHPUnit\Framework\Attributes\Test;
 use TarfinLabs\Netgsm\Exceptions\NetgsmException;
 use TarfinLabs\Netgsm\Netgsm;
 
@@ -45,9 +46,7 @@ class NetgsmAvailableCreditTest extends BaseTestCase
             ));
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_get_available_credit_balance_with_correct_arguments()
     {
         $credit = $this->faker->numberBetween(5, 10);
@@ -61,9 +60,7 @@ class NetgsmAvailableCreditTest extends BaseTestCase
         $this->assertSame((string) $credit, $response);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function should_throw_exception_when_return_code_is_not_success()
     {
         $errorCode = $this->faker->randomElement([30, 40, 100]);

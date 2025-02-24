@@ -5,6 +5,7 @@ namespace TarfinLabs\Netgsm\Tests;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;
 use Mockery;
+use PHPUnit\Framework\Attributes\Test;
 use TarfinLabs\Netgsm\Exceptions\CouldNotSendNotification;
 use TarfinLabs\Netgsm\Exceptions\IncorrectPhoneNumberFormatException;
 use TarfinLabs\Netgsm\Exceptions\NetgsmException;
@@ -51,9 +52,7 @@ class NetGsmTest extends BaseTestCase
         return $netgsmMessage;
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function it_can_send_sms_message_with_correct_arguments()
     {
         $code = $this->faker->randomElement(['00', '01', '02']);
@@ -73,9 +72,7 @@ class NetGsmTest extends BaseTestCase
         $this->assertSame($jobId, $returnedJobId);
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function should_throw_exception_when_return_code_is_not_success()
     {
         $this->expectException(CouldNotSendNotification::class);
@@ -90,9 +87,7 @@ class NetGsmTest extends BaseTestCase
         $this->netgsm->sendSms($this->newSmsMessage());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function should_throw_exception_when_is_no_job_id_in_response()
     {
         $this->expectException(NetgsmException::class);
@@ -107,9 +102,7 @@ class NetGsmTest extends BaseTestCase
         $this->netgsm->sendSms($this->newSmsMessage());
     }
 
-    /**
-     * @test
-     */
+    #[Test]
     public function should_throw_exception_when_phone_number_is_incorrect()
     {
         $this->expectException(IncorrectPhoneNumberFormatException::class);

@@ -2,11 +2,12 @@
 
 namespace TarfinLabs\Netgsm\Tests;
 
+use PHPUnit\Framework\Attributes\Test;
 use TarfinLabs\Netgsm\Sms\NetgsmSmsMessage;
 
 class NetGsmMessageTest extends BaseTestCase
 {
-    /** @test */
+    #[Test]
     public function it_supports_create_method()
     {
         $content = $this->faker->sentence;
@@ -17,7 +18,7 @@ class NetGsmMessageTest extends BaseTestCase
         $this->assertEquals($content, $message->getMessage());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_set_body()
     {
         $content = $this->faker->sentence;
@@ -27,7 +28,7 @@ class NetGsmMessageTest extends BaseTestCase
         $this->assertEquals($content, $message->getMessage());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_set_header()
     {
         $name = $this->faker->company;
@@ -37,7 +38,7 @@ class NetGsmMessageTest extends BaseTestCase
         $this->assertEquals($name, $message->getHeader());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_set_send_method()
     {
         $method = $this->faker->randomElement(['xml', 'get']);
@@ -47,7 +48,7 @@ class NetGsmMessageTest extends BaseTestCase
         $this->assertEquals($method, $message->getSendMethod());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_set_needs_authorized_data()
     {
         $authorizedData = $this->faker->boolean;
@@ -57,7 +58,7 @@ class NetGsmMessageTest extends BaseTestCase
         $this->assertEquals($authorizedData, $message->isAuthorizedData());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_set_recipients_from_array()
     {
         $message = (new NetgsmSmsMessage)->setRecipients([31650520659, 31599858770]);
@@ -65,7 +66,7 @@ class NetGsmMessageTest extends BaseTestCase
         $this->assertEquals(['31650520659', '31599858770'], $message->getRecipients());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_set_recipients_from_integer()
     {
         $message = (new NetgsmSmsMessage)->setRecipients(31650520659);
@@ -73,7 +74,7 @@ class NetGsmMessageTest extends BaseTestCase
         $this->assertEquals([31650520659], $message->getRecipients());
     }
 
-    /** @test */
+    #[Test]
     public function it_can_set_recipients_from_string()
     {
         $message = (new NetgsmSmsMessage)->setRecipients('31650520659');
