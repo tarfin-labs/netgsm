@@ -95,7 +95,7 @@ abstract class AbstractNetgsmMessage extends NetgsmApiClient
      * @param  array  $defaults
      * @return static
      */
-    public static function create(string $message = null, array $defaults = [])
+    public static function create(?string $message = null, array $defaults = [])
     {
         return new static($message, $defaults);
     }
@@ -106,7 +106,7 @@ abstract class AbstractNetgsmMessage extends NetgsmApiClient
      * @param  array  $defaults
      * @param  string  $message
      */
-    public function __construct(string $message = null, array $defaults = [])
+    public function __construct(?string $message = null, array $defaults = [])
     {
         $this->defaults = $defaults;
         $this->message = $message;
