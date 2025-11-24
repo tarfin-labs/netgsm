@@ -325,6 +325,64 @@ abstract class AbstractNetgsmMessage extends NetgsmApiClient
      */
     public function parseResponse(): self
     {
+        // Check if response is XML format
+        if (str_starts_with(trim($this->response), '<?xml')) {
+            return $this->parseXmlResponse();
+        }
+
+        return $this->parseLegacyResponse();
+    }
+
+    /**
+     * parses the XML response from api.
+     *
+     * @return $this
+     *
+     * @throws CouldNotSendNotification
+     * @throws NetgsmException
+     */
+    protected function parseXmlResponse(): self
+    {
+        $xml = simplexml_load_string($this->response);
+
+        if ($xml === false) {
+            throw new CouldNotSendNotification(NetgsmErrors::NETGSM_GENERAL_ERROR);
+        }
+
+        $code = (string) $xml->main->code;
+        $jobId = (string) $xml->main->jobID;
+
+        if (empty($code) && $code !== '0') {
+            throw new CouldNotSendNotification(NetgsmErrors::NETGSM_GENERAL_ERROR);
+        }
+
+        $normalizedCode = str_pad($code, 2, '0', STR_PAD_LEFT);
+
+        if (! in_array($normalizedCode, self::SUCCESS_CODES)) {
+            $message = $this->errorCodes[$code] ?? $this->errorCodes[$normalizedCode] ?? NetgsmErrors::SYSTEM_ERROR;
+            throw new CouldNotSendNotification($message);
+        }
+
+        if (empty($jobId)) {
+            throw new NetgsmException(NetgsmErrors::JOB_ID_NOT_FOUND);
+        }
+
+        $this->code = $normalizedCode;
+        $this->jobId = $jobId;
+
+        return $this;
+    }
+
+    /**
+     * parses the legacy space-separated response from api.
+     *
+     * @return $this
+     *
+     * @throws CouldNotSendNotification
+     * @throws NetgsmException
+     */
+    protected function parseLegacyResponse(): self
+    {
         $result = explode(' ', $this->response);
 
         if (! isset($result[0])) {
