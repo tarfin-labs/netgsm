@@ -1,41 +1,44 @@
 name: tests
 
 on:
-    push:
-      branches:
-        - master
-        - '*.x'
-    pull_request:
+  push:
+    branches:
+      - master
+      - '*.x'
+  pull_request:
 
 jobs:
-    test:
-        runs-on: ubuntu-latest
+  test:
+    runs-on: ubuntu-latest
 
-        strategy:
-            fail-fast: true
-            matrix:
-                php: [8.2, 8.3, 8.4]
-                laravel: [11, 12]
-                stability: [prefer-lowest, prefer-stable]
+    strategy:
+      fail-fast: true
+      matrix:
+        php: [8.2, 8.3, 8.4]
+        laravel: [11, 12, 13]
+        stability: [prefer-lowest, prefer-stable]
+        exclude:
+          - laravel: '13'
+            php: 8.2
 
-        name: PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }} - Stability ${{ matrix.stability }}
+    name: PHP ${{ matrix.php }} - Laravel ${{ matrix.laravel }} - Stability ${{ matrix.stability }}
 
-        steps:
-            - name: Checkout code
-              uses: actions/checkout@v4
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-            - name: Setup PHP
-              uses: shivammathur/setup-php@v2
-              with:
-                  php-version: ${{ matrix.php }}
-                  extensions: dom, curl, libxml, mbstring, zip
-                  ini-values: error_reporting=E_ALL
-                  tools: composer:v2
-                  coverage: none
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: dom, curl, libxml, mbstring, zip
+          ini-values: error_reporting=E_ALL
+          tools: composer:v2
+          coverage: none
 
-            - name: Install dependencies
-              run: |
-                  composer update --prefer-dist --no-interaction --no-progress --${{ matrix.stability }}
+      - name: Install dependencies
+        run: |
+          composer update --prefer-dist --no-interaction --no-progress --${{ matrix.stability }}
 
-            - name: Execute tests
-              run: vendor/bin/phpunit --testdox --colors=always --exclude-group skipped
+      - name: Execute tests
+        run: vendor/bin/phpunit --testdox --colors=always --exclude-group skipped
