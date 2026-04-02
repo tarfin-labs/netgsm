@@ -4,7 +4,7 @@ All notable changes to `netgsm` will be documented in this file
 
 ## Unreleased
 
-## [6.0.0] - 2026-04-02
+## [5.1.0] - 2026-04-02
 - Laravel 13 support added.
 
 ## [5.0.0] - 2025-02-20
