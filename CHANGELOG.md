@@ -4,6 +4,13 @@ All notable changes to `netgsm` will be documented in this file
 
 ## Unreleased
 
+## [5.2.0] - 2026-04-08
+- Laravel 13 support added.
+- PHP 8.5 support added.
+
+## [5.1.0] - 2025-11-24
+- Fix OTP XML message response parsing (#48 by @oguzhankrcb)
+
 ## [5.0.0] - 2025-02-20
 - Laravel 12 support added.
 - PHP 8.4 support added.

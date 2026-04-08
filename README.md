@@ -6,7 +6,7 @@
 [![Total Downloads](https://img.shields.io/packagist/dt/tarfin-labs/netgsm.svg?style=flat-square)](https://packagist.org/packages/tarfin-labs/netgsm)
 
 ## Introduction
-With this package, you can send easily [Netgsm notifications](https://www.netgsm.com.tr/dokuman/#api-dok%C3%BCman%C4%B1) with Laravel `^8.0`.
+With this package, you can send easily [Netgsm notifications](https://www.netgsm.com.tr/dokuman/#api-dok%C3%BCman%C4%B1) with Laravel `^11.0`.
 This package also provides some simple reporting.
 
 > This package requires PHP `8.2` or higher and Laravel `11.0` or higher.   
