@@ -64,6 +64,8 @@ class NetgsmApiClient
                 $options['form_params'] = $params;
             } else {
                 $options['body'] = $params;
+                // remove query parameters for POST requests with raw body
+                unset($options['query']);
             }
         }
 
