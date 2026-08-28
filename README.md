@@ -219,6 +219,9 @@ Fields in the report result may differ depending on the specified report type an
 
 Report Results
 
+> `jobId` is always returned as a **string**. Netgsm bulk ids can exceed `PHP_INT_MAX`,
+> so casting them to an integer would corrupt the value. Store and compare them as strings.
+
 | Field | Version | NetgsmSmsReport Support | NetgsmSmsDetailReport Support
 | :----- | :----- | :---------------------- | :-------------------- |
 | jobId  | All    | Yes                     | Yes

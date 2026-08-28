@@ -34,17 +34,17 @@ class NetgsmSmsReport extends AbstractNetgsmReport
      */
     protected $columnMap = [
         0 => [
-            'jobId' => 'integer',
+            'jobId' => 'string',
             'phone' => 'string',
             'status' => 'integer',
         ],
         1 => [
-            'jobId' => 'integer',
+            'jobId' => 'string',
             'phone' => 'string',
             'status' => 'integer',
         ],
         2 => [
-            'jobId' => 'integer',
+            'jobId' => 'string',
             'phone' => 'string',
             'status' => 'integer',
             'operatorCode' => 'integer',
@@ -54,7 +54,7 @@ class NetgsmSmsReport extends AbstractNetgsmReport
             'errorCode' => 'integer',
         ],
         3 => [
-            'jobId' => 'integer',
+            'jobId' => 'string',
             'phone' => 'string',
             'status' => 'integer',
         ],

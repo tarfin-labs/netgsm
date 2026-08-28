@@ -4,6 +4,21 @@ All notable changes to `netgsm` will be documented in this file
 
 ## Unreleased
 
+## [5.3.0] - 2026-08-28
+- `jobId` is no longer cast to an integer in report results. `NetgsmSmsReport` and
+  `NetgsmSmsDetailReport` now return it as a string, matching the string `jobId` already
+  returned by `Netgsm::sendSms()`.
+
+  **Behavioural change:** Netgsm bulk ids can be longer than `PHP_INT_MAX` (19 digits).
+  Casting those to an integer saturated the value to `9223372036854775807`, so delivery
+  reports never matched the stored message id. Consumers comparing `jobId` with `===` or
+  using it as an array key should make sure they compare it as a string.
+  `status`, `operatorCode`, `length` and `errorCode` in `NetgsmSmsReport` are still
+  returned as integers. `NetgsmSmsDetailReport` returns every field as a string, as before.
+
+## [5.2.1] - 2026-04-15
+- Omit credential query params for Netgsm XML POST requests (#52)
+
 ## [5.2.0] - 2026-04-08
 - Laravel 13 support added.
 - PHP 8.5 support added.
