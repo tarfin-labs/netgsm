@@ -71,7 +71,7 @@ class NetgsmSmsDetailReport extends AbstractNetgsmReport
     public function processRow($line): array
     {
         return [
-            'jobId' => (int) $line->msginfo->jobID,
+            'jobId' => (string) $line->msginfo->jobID,
             'message' => (string) $line->msginfo->msg,
             'startDate' => (string) $line->datetime->startdate,
             'endDate' => (string) $line->datetime->stopdate,

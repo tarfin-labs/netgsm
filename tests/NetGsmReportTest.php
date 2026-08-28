@@ -207,6 +207,27 @@ class NetGsmReportTest extends BaseTestCase
     }
 
     #[Test]
+    public function job_id_longer_than_php_int_max_should_be_returned_as_string()
+    {
+        $jobId = '17879011743938617827690307';
+        $report = $this->newSmsReport();
+
+        $this->mockReportApiRequest($jobId.' 905301234567 1 20 1 28.08.2026 10:15:00 0');
+
+        $reports = $this->netgsm->getReports($report, new Carbon(), new Carbon(), [
+            'version' => 2,
+        ]);
+
+        $row = $reports->first();
+
+        $this->assertSame($jobId, $row['jobId']);
+        $this->assertSame(1, $row['status']);
+        $this->assertSame(20, $row['operatorCode']);
+        $this->assertSame(1, $row['length']);
+        $this->assertSame(0, $row['errorCode']);
+    }
+
+    #[Test]
     public function response_should_properly_parsed_according_by_version()
     {
         $version = $this->faker->randomElement([2]);
